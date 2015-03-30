@@ -15,15 +15,16 @@ public class User {
     private String address;         //Optional when register
     private String phoneNumber;     //Optional when register
     private String location;        //Optional
-    private boolean loggedIn;       //To indicate if the user is logged in
-    private boolean canSignUp;
+//    private boolean loggedIn;       //To indicate if the user is logged in
 
-    public boolean isCanSignUp() {
-        return canSignUp;
-    }
+    public User(){}
 
-    public void setCanSignUp(boolean canSignUp) {
-        this.canSignUp = canSignUp;
+    public User( String userName, String password, String address, String phoneNumber, String location) {
+        this.userName = userName;
+        this.password = password;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+//        this.location = location;
     }
 
     public String getEmail() {
@@ -74,11 +75,4 @@ public class User {
         this.location = location;
     }
 
-    public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
 }

@@ -8,6 +8,7 @@ import com.google.api.server.spi.config.Nullable;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.ConflictException;
 import com.google.api.server.spi.response.NotFoundException;
+import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.cmd.Query;
@@ -71,21 +72,17 @@ public class UserEndpoint {
     public User signUp(User user) throws ConflictException {
         //If if is not null, then check if it exists. If yes, throw an Exception
         //that it is already present
-        try {
+
             if (user.getEmail() != null) {
                 if (findRecord(user.getEmail()) != null) {
-                    throw new ConflictException("Object already exists");
+                    throw new ConflictException("User already exists");
                 }
             }
             //Since our @Id field is a Long, Objectify will generate a unique value for us
             //when we use put
-            user.setCanSignUp(true);
             ofy().save().entity(user).now();
             return user;
-        }catch(ConflictException e){
-            // If user already exists, just return the original one.
-            return user;
-        }
+
     }
 
     /**
@@ -95,15 +92,14 @@ public class UserEndpoint {
      * @throws NotFoundException
      */
     @ApiMethod(name = "authenticate")
-    public User authenticate(User user) throws NotFoundException{
+    public User authenticate(User user) throws NotFoundException,UnauthorizedException{
         User userInDatastore = findRecord(user.getEmail());
         if ( userInDatastore == null) {
             throw new NotFoundException("User Record does not exist");
         }
-        if(user.getPassword().equals(userInDatastore.getPassword())){
-            userInDatastore.setLoggedIn(true);
-            updateUser(userInDatastore);
-            return userInDatastore;
+        if(!user.getPassword().equals(userInDatastore.getPassword())){
+            throw new UnauthorizedException("Invalid Password");
+
         }
         return user;
     }

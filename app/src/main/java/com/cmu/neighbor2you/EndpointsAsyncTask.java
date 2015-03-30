@@ -4,7 +4,9 @@ package com.cmu.neighbor2you;
  * Created by xing on 3/29/15.
  */
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
 
@@ -13,9 +15,11 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.cmu.backend.userEndpoint.model.User;
+import com.cmu.backend.userEndpoint.*;
 import com.cmu.backend.userEndpoint.UserEndpoint;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,8 +52,15 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, List<User>> {
         }
 
         try {
-            return myApiService.listUser().execute().getItems();
+//            return myApiService.listUser().execute().getItems();
+            User test = new User().setEmail("123@test.com");
+            test.setPassword("123");
+            User user = myApiService.authenticate(test).execute();
+            ArrayList<User> tests =  new ArrayList<User>();
+            tests.add(user);
+            return tests;
         } catch (IOException e) {
+            Log.v("TAG",e.getMessage());
             return Collections.EMPTY_LIST;
         }
     }
