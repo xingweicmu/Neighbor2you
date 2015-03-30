@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.cmu.backend.userEndpoint.model.User;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -13,6 +15,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        User user = new User();
 
     }
 
