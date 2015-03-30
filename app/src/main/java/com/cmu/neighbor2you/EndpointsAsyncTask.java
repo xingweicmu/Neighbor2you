@@ -19,16 +19,16 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-class EndpointsAsyncTask extends AsyncTask<Void, Void, List<User>> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, List<User>> {
     private static UserEndpoint myApiService = null;
     private Context context;
 
-    EndpointsAsyncTask(Context context) {
+    public EndpointsAsyncTask(Context context) {
         this.context = context;
     }
 
     @Override
-    protected List<User> doInBackground(Void... params) {
+    public List<User> doInBackground(Void... params) {
         if(myApiService == null) { // Only do this once
             UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -48,6 +48,7 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, List<User>> {
         }
 
         try {
+
             return myApiService.listUser().execute().getItems();
         } catch (IOException e) {
             return Collections.EMPTY_LIST;
@@ -55,7 +56,7 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, List<User>> {
     }
 
     @Override
-    protected void onPostExecute(List<User> result) {
+    public void onPostExecute(List<User> result) {
         for (User user : result) {
             Toast.makeText(context, user.getEmail(), Toast.LENGTH_LONG).show();
         }

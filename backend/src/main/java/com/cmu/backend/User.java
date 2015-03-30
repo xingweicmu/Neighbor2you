@@ -3,12 +3,14 @@ package com.cmu.backend;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.io.Serializable;
+
 /**
  * Created by xing on 3/28/15.
  */
 
 @Entity
-public class User {
+public class User implements Serializable {
     @Id private String email;       //Key
     private String userName;
     private String password;
