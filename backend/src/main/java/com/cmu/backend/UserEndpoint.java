@@ -71,15 +71,21 @@ public class UserEndpoint {
     public User signUp(User user) throws ConflictException {
         //If if is not null, then check if it exists. If yes, throw an Exception
         //that it is already present
-        if (user.getEmail() != null) {
-            if (findRecord(user.getEmail()) != null) {
-                throw new ConflictException("Object already exists");
+        try {
+            if (user.getEmail() != null) {
+                if (findRecord(user.getEmail()) != null) {
+                    throw new ConflictException("Object already exists");
+                }
             }
+            //Since our @Id field is a Long, Objectify will generate a unique value for us
+            //when we use put
+            user.setCanSignUp(true);
+            ofy().save().entity(user).now();
+            return user;
+        }catch(ConflictException e){
+            // If user already exists, just return the original one.
+            return user;
         }
-        //Since our @Id field is a Long, Objectify will generate a unique value for us
-        //when we use put
-        ofy().save().entity(user).now();
-        return user;
     }
 
     /**

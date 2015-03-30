@@ -16,6 +16,15 @@ public class User {
     private String phoneNumber;     //Optional when register
     private String location;        //Optional
     private boolean loggedIn;       //To indicate if the user is logged in
+    private boolean canSignUp;
+
+    public boolean isCanSignUp() {
+        return canSignUp;
+    }
+
+    public void setCanSignUp(boolean canSignUp) {
+        this.canSignUp = canSignUp;
+    }
 
     public String getEmail() {
         return email;

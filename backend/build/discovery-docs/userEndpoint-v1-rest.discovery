@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/Wo5wvZ69deEZzMgeaocknYiQy3s\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/2rFfJ5skRacVOLP296zlG-Vsfgw\"",
  "discoveryVersion": "v1",
  "id": "userEndpoint:v1",
  "name": "userEndpoint",
@@ -94,6 +94,9 @@
    "properties": {
     "address": {
      "type": "string"
+    },
+    "canSignUp": {
+     "type": "boolean"
     },
     "email": {
      "type": "string"
