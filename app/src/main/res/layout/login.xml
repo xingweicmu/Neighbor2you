@@ -8,8 +8,10 @@
         android:id="@+id/image_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="77dp"
-        android:src="@drawable/title"
+        android:src="@drawable/title2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <LinearLayout
@@ -24,20 +26,22 @@
 
 
         <EditText
-            android:id="@+id/et_Example"
+            android:id="@+id/et_Email"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="15dp"
             android:background="#00ffffff"
             android:hint="Email"
             android:inputType="number"
             android:paddingLeft="10dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="10dp"/>
 
 
         <EditText
             android:id="@+id/et_Pwd"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:background="#00ffffff"
             android:hint="Password"
             android:inputType="textPassword"
@@ -51,7 +55,7 @@
         android:textColor="@android:color/holo_blue_dark"
         android:background="@android:color/black"
         android:layout_below="@id/linearLayout01"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="22dp"
         android:layout_marginBottom="16dp"
         android:text="Login" />
     <Button
