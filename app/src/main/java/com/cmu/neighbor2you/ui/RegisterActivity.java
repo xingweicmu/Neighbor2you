@@ -2,6 +2,7 @@ package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +19,8 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
@@ -27,6 +30,7 @@ import java.io.IOException;
 public class RegisterActivity extends ActionBarActivity {
 
     private EditText username, password, password2, email, address, phone;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +127,19 @@ public class RegisterActivity extends ActionBarActivity {
             try {
                 return myApiService.signUp(params[0]).execute();
             } catch (IOException e) {
+                String s = e.getMessage().trim();
+                s = s.substring(s.indexOf("{"));
+
+                JsonParser parser = new JsonParser();
+                JsonObject jsonObject = parser.parse(s).getAsJsonObject();
+                message = jsonObject.get("message").getAsString();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 return null;
             }
         }
@@ -130,6 +147,14 @@ public class RegisterActivity extends ActionBarActivity {
         @Override
         public void onPostExecute(User result) {
             if (result != null) {
+                SharedPreferences sharedpreferences = getSharedPreferences
+                        (LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                String u = email.getText().toString();
+                String p = password.getText().toString();
+                editor.putString(LoginActivity.name, u);
+                editor.putString(LoginActivity.pass, p);
+                editor.commit();
                 Intent it = new Intent();
                 it.setClass(RegisterActivity.this, MainActivity.class);
                 startActivity(it);

@@ -17,7 +17,17 @@ public class User implements Serializable {
     private String address;         //Optional when register
     private String phoneNumber;     //Optional when register
     private String location;        //Optional
-    private boolean loggedIn;       //To indicate if the user is logged in
+//    private boolean loggedIn;       //To indicate if the user is logged in
+
+    public User(){}
+
+    public User( String userName, String password, String address, String phoneNumber, String location) {
+        this.userName = userName;
+        this.password = password;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+//        this.location = location;
+    }
 
     public String getEmail() {
         return email;
@@ -67,11 +77,4 @@ public class User implements Serializable {
         this.location = location;
     }
 
-    public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
 }

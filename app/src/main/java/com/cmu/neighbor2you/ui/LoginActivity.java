@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.cmu.backend.userEndpoint.UserEndpoint;
 import com.cmu.backend.userEndpoint.model.User;
@@ -18,36 +19,37 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
 
 public class LoginActivity extends ActionBarActivity {
 
-    private EditText email,password;
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    private EditText email, password;
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String name = "emailKey";
     public static final String pass = "passwordKey";
+    private String message;
     SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        email = (EditText)findViewById(R.id.editText1);
-        password = (EditText)findViewById(R.id.editText2);
-
+        email = (EditText) findViewById(R.id.editText1);
+        password = (EditText) findViewById(R.id.editText2);
 
     }
 
     @Override
     protected void onResume() {
-        sharedpreferences=getSharedPreferences(MyPREFERENCES,
+        sharedpreferences = getSharedPreferences(MyPREFERENCES,
                 Context.MODE_PRIVATE);
-        if (sharedpreferences.contains(name))
-        {
-            if(sharedpreferences.contains(pass)){
-                startActivity(new Intent(this,MainActivity.class));
+        if (sharedpreferences.contains(name)) {
+            if (sharedpreferences.contains(pass)) {
+                startActivity(new Intent(this, MainActivity.class));
             }
         }
         super.onResume();
@@ -56,10 +58,15 @@ public class LoginActivity extends ActionBarActivity {
     public void login(View v) {
         String emailS = email.getText().toString();
         String passwordS1 = password.getText().toString();
-        User user = new User();
-        user.setEmail(emailS);
-        user.setPassword(passwordS1);
-        new LoginAsyncTask(this).execute(user);
+        if (emailS.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) {
+            User user = new User();
+            user.setEmail(emailS);
+            user.setPassword(passwordS1);
+            new LoginAsyncTask(this).execute(user);
+        } else {
+            Toast.makeText(this, "Email is malformed!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void gotoRegister(View v) {
@@ -97,13 +104,26 @@ public class LoginActivity extends ActionBarActivity {
             try {
                 return myApiService.authenticate(params[0]).execute();
             } catch (IOException e) {
+                String s = e.getMessage().trim();
+                s = s.substring(s.indexOf("{"));
+
+                JsonParser parser = new JsonParser();
+                JsonObject jsonObject = parser.parse(s).getAsJsonObject();
+                message = jsonObject.get("message").getAsString();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 return null;
             }
         }
 
         @Override
         public void onPostExecute(User user) {
-            if (user.getLoggedIn()) {
+            if (user != null) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 String u = email.getText().toString();
                 String p = password.getText().toString();
