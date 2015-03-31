@@ -52,8 +52,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_blue_dark"
-            android:background="@android:color/black"
-            android:layout_below="@id/linearLayout01"
+            android:background="#e0000000"
+
             android:layout_marginTop="30dp"
             android:layout_marginBottom="16dp"
             android:text="Register" />
