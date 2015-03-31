@@ -81,39 +81,24 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
-      <excludeFolder url="file://$MODULE_DIR$/build/test-results" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="google-oauth-client-1.19.0" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-1.19.0" level="project" />
-    <orderEntry type="library" exported="" name="jsr305-1.3.9" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
-    <orderEntry type="library" exported="" name="jackson-core-2.1.3" level="project" />
-    <orderEntry type="library" exported="" name="google-api-client-1.19.0" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
-    <orderEntry type="library" exported="" name="google-api-client-android-1.19.0" level="project" />
     <orderEntry type="library" exported="" name="backend-android-endpoints" level="project" />
-<<<<<<< HEAD
+    <orderEntry type="library" exported="" name="jsr305-1.3.9" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-1.19.0" level="project" />
-=======
     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
->>>>>>> ef07bf3a89f63eb41ced9343ef089ab191e6ec88
     <orderEntry type="library" exported="" name="google-http-client-android-1.19.0" level="project" />
     <orderEntry type="library" exported="" name="guava-jdk5-13.0" level="project" />
-<<<<<<< HEAD
-    <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
-=======
     <orderEntry type="library" exported="" name="google-http-client-jackson2-1.19.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.1.3" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-1.19.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-android-1.19.0" level="project" />
-    <orderEntry type="library" name="appengine-endpoints-1.9.14" level="project" />
->>>>>>> ef07bf3a89f63eb41ced9343ef089ab191e6ec88
   </component>
 </module>
 

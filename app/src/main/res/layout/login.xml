@@ -32,7 +32,6 @@
             android:layout_marginTop="15dp"
             android:background="#00ffffff"
             android:hint="Email"
-            android:inputType="number"
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"/>
 
@@ -45,7 +44,8 @@
             android:background="#00ffffff"
             android:hint="Password"
             android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="10dp"
+            android:onClick="login"/>
 
 
     <Button
@@ -67,6 +67,7 @@
         android:layout_below="@id/linearLayout01"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
-        android:text="Register" />
+        android:text="Register"
+        android:onClick="gotoRegister"/>
     </LinearLayout>
 </RelativeLayout>

@@ -38,8 +38,8 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        email = (EditText) findViewById(R.id.editText1);
-        password = (EditText) findViewById(R.id.editText2);
+        email = (EditText) findViewById(R.id.et_Email);
+        password = (EditText) findViewById(R.id.et_Pwd);
 
     }
 

@@ -29,19 +29,19 @@ import java.io.IOException;
  */
 public class RegisterActivity extends ActionBarActivity {
 
-    private EditText username, password, password2, email, address, phone;
+    private EditText username, password, password2, email, phone;
     private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-        username = (EditText) findViewById(R.id.editText);
-        password = (EditText) findViewById(R.id.editText3);
-        password2 = (EditText) findViewById(R.id.editText7);
-        email = (EditText) findViewById(R.id.editText4);
-        address = (EditText) findViewById(R.id.editText5);
-        phone = (EditText) findViewById(R.id.editText6);
+        username = (EditText) findViewById(R.id.et_res_username);
+        password = (EditText) findViewById(R.id.et_res_Pwd);
+        password2 = (EditText) findViewById(R.id.et_res_conPwd);
+        email = (EditText) findViewById(R.id.et_res_email);
+//        address = (EditText) findViewById(R.id.editText5);
+        phone = (EditText) findViewById(R.id.et_res_phone);
 
     }
 
@@ -51,7 +51,7 @@ public class RegisterActivity extends ActionBarActivity {
         String passwordS1 = password.getText().toString();
         String passwordS2 = password2.getText().toString();
         String emailS = email.getText().toString();
-        String addrS = address.getText().toString();
+//        String addrS = address.getText().toString();
         String phoneS = phone.getText().toString();
 
         if (isValid(usernameS, passwordS1, passwordS2, emailS, phoneS)) {
@@ -59,7 +59,7 @@ public class RegisterActivity extends ActionBarActivity {
             user.setUserName(usernameS);
             user.setPassword(passwordS1);
             user.setEmail(emailS);
-            user.setAddress(addrS);
+//            user.setAddress(addrS);
             user.setPhoneNumber(phoneS);
             new RegisterAsyncTask(this).execute(user);
         }
