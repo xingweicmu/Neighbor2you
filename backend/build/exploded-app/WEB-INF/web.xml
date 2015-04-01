@@ -5,7 +5,7 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.cmu.backend.MyEndpoint, com.cmu.backend.UserEndpoint</param-value>
+            <param-value>com.cmu.backend.MyEndpoint, com.cmu.backend.UserEndpoint, com.cmu.backend.RequestEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

@@ -105,7 +105,7 @@ public class UserEndpoint {
     }
 
     /**
-     * This updates an existing <code>Quote</code> object.
+     * This updates an existing <code>User</code> object.
      * @param user The object to be added.
      * @return The object to be updated.
      */
@@ -131,7 +131,7 @@ public class UserEndpoint {
         ofy().delete().entity(record).now();
     }
 
-    //Private method to retrieve a <code>Quote</code> record
+    //Private method to retrieve a <code>User</code> record
     private User findRecord(String email) {
         return ofy().load().type(User.class).id(email).now();
 //or return ofy().load().type(Quote.class).filter("id",id).first.now();
