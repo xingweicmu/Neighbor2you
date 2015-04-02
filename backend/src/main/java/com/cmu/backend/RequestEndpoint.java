@@ -65,6 +65,55 @@ public class RequestEndpoint {
         return CollectionResponse.<Request>builder().setItems(records).setNextPageToken(cursorString).build();
     }
 
+    @ApiMethod(name = "getRequest")
+    public CollectionResponse<Request> getRequest(@Nullable @Named("cursor") String cursorString,
+                                                   @Nullable @Named("count") Integer count,
+                                                   @Named("latitude") float latitude,
+                                                   @Named("longitude")float longitude
+                                                    ) {
+
+        Query<Request> query = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0);
+        List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",-10.0).filter("longitude <=",10.0).list();
+        List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0).list();
+        List<Request> result = new ArrayList<Request>();
+        for(Request lo: longs){
+            for(Request la:lats){
+                if(lo.getId() == la.getId()){
+                    result.add(la);
+                    break;
+                }
+            }
+        }
+        // The following not used temporarily
+        if (count != null) query.limit(count);
+        System.out.println(result.size());
+        if (cursorString != null && cursorString != "") {
+            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+        }
+
+        List<Request> records = new ArrayList<Request>();
+        QueryResultIterator<Request> iterator = query.iterator();
+        int num = 0;
+        while (iterator.hasNext()) {
+            records.add(iterator.next());
+            if (count != null) {
+                num++;
+                if (num == count) break;
+            }
+        }
+
+        //Find the next cursor
+        if (cursorString != null && cursorString != "") {
+            Cursor cursor = iterator.getCursor();
+            if (cursor != null) {
+                cursorString = cursor.toWebSafeString();
+            }
+        }
+
+        return CollectionResponse.<Request>builder().setItems(result).setNextPageToken(cursorString).build();
+    }
+
+
     /**
      * Sign up: this inserts a new <code>Request</code> object.
      * @param request The object to be added.

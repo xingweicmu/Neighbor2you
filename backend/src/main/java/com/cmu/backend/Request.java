@@ -2,6 +2,7 @@ package com.cmu.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 import java.io.Serializable;
 
@@ -16,7 +17,9 @@ public class Request implements Serializable {
     private String acceptor;
     private String itemName;
     private float itemPrice;
+    @Index
     private float latitude;
+    @Index
     private float longitude;
     private long deadline;
     private boolean invalid;
