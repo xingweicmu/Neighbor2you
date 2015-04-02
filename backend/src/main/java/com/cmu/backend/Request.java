@@ -16,17 +16,27 @@ public class Request implements Serializable {
     private String requester;
     private String acceptor;
     private String itemName;
-    private float itemPrice;
+    private double itemPrice;
     @Index
-    private float latitude;
+    private double latitude;
     @Index
-    private float longitude;
+    private double longitude;
     private long deadline;
     private boolean invalid;
 
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    private double distance;
+
     public Request(){}
 
-    public Request(String requester, String itemName, float itemPrice, float latitude, float longitude, long deadline, boolean invalid) {
+    public Request(String requester, String itemName, double itemPrice, double latitude, double longitude, long deadline, boolean invalid) {
         this.requester = requester;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -76,27 +86,27 @@ public class Request implements Serializable {
         this.itemName = itemName;
     }
 
-    public float getItemPrice() {
+    public double getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(float itemPrice) {
+    public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

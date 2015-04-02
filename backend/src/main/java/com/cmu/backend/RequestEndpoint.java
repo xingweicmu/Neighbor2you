@@ -66,19 +66,22 @@ public class RequestEndpoint {
     }
 
     @ApiMethod(name = "getRequest")
-    public CollectionResponse<Request> getRequest(@Nullable @Named("cursor") String cursorString,
+    public CollectionResponse<Request> getRequestBasedOnLocation(@Nullable @Named("cursor") String cursorString,
                                                    @Nullable @Named("count") Integer count,
-                                                   @Named("latitude") float latitude,
-                                                   @Named("longitude")float longitude
+                                                   @Named("latitude") double latitude,
+                                                   @Named("longitude")double longitude
                                                     ) {
 
         Query<Request> query = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0);
-        List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",-10.0).filter("longitude <=",10.0).list();
-        List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0).list();
+        List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",longitude-0.003).filter("longitude <=",longitude+0.003).list();
+        List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",latitude-0.05).filter("latitude <=",latitude+0.05).list();
         List<Request> result = new ArrayList<Request>();
         for(Request lo: longs){
             for(Request la:lats){
                 if(lo.getId() == la.getId()){
+                    double distance = CalculateLength(la.getLatitude(),la.getLongitude(),latitude,longitude);
+                    System.out.println(la.getLatitude()+" "+la.getLongitude() +" "+distance);
+                    la.setDistance(distance);
                     result.add(la);
                     break;
                 }
@@ -113,6 +116,18 @@ public class RequestEndpoint {
         return CollectionResponse.<Request>builder().setItems(result).setNextPageToken(cursorString).build();
     }
 
+    private double CalculateLength(double lat1, double long1, double lat2, double long2)
+    {
+        double d2r = Math.PI/180;
+        double dlong = (long2 - long1) * d2r;
+        double dlat = (lat2 - lat1) * d2r;
+        double a = Math.pow(Math.sin(dlat/2.0), 2) + Math.cos(lat1*d2r) * Math.cos(lat2*d2r) * Math.pow(Math.sin(dlong/2.0), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double d = 6367 * c; // in km; 3956 in mile
+
+        return d;
+    }
+
 
     /**
      * Sign up: this inserts a new <code>Request</code> object.
@@ -120,7 +135,7 @@ public class RequestEndpoint {
      * @return The object to be added.
      */
     @ApiMethod(name = "insertRequest")
-    public Request signUp(Request request) throws ConflictException {
+    public Request insertRequest(Request request) throws ConflictException {
         //If if is not null, then check if it exists. If yes, throw an Exception
         //that it is already present
 
