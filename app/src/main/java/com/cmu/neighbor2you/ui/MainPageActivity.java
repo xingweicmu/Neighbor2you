@@ -21,7 +21,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -240,6 +242,16 @@ public class MainPageActivity extends Activity {
                 // Do something like this to add more pages
 //                rootView = inflater.inflate(R.layout.help, container, false);
 //                rootView.findViewById(R.id.button2).setOnClickListener();
+            }
+            else if(i == 4){
+                rootView = inflater.inflate(R.layout.activity_logout, container, false);
+                rootView.findViewById(R.id.button).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+
+                            }
+                        });
             }
             return rootView;
         }
