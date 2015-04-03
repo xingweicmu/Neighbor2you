@@ -47,16 +47,16 @@ public class RegisterActivity extends ActionBarActivity {
 
     public void register(View v) {
 
-        String usernameS = username.getText().toString();
+//        String usernameS = username.getText().toString();
         String passwordS1 = password.getText().toString();
         String passwordS2 = password2.getText().toString();
         String emailS = email.getText().toString();
 //        String addrS = address.getText().toString();
         String phoneS = phone.getText().toString();
 
-        if (isValid(usernameS, passwordS1, passwordS2, emailS, phoneS)) {
+        if (isValid(passwordS1, passwordS2, emailS, phoneS)) {
             User user = new User();
-            user.setUserName(usernameS);
+//            user.setUserName(usernameS);
             user.setPassword(passwordS1);
             user.setEmail(emailS);
 //            user.setAddress(addrS);
@@ -66,12 +66,13 @@ public class RegisterActivity extends ActionBarActivity {
 
     }
 
-    private boolean isValid(String username, String pass1, String pass2, String email, String phone) {
+    private boolean isValid(String pass1, String pass2, String email, String phone) {
         boolean ret = true;
-        if (username.trim().isEmpty()) {
-            ret = false;
-            Toast.makeText(this, "User name is empty!", Toast.LENGTH_LONG).show();
-        } else if (pass1.trim().isEmpty() || pass2.trim().isEmpty()) {
+//        if (username.trim().isEmpty()) {
+//            ret = false;
+//            Toast.makeText(this, "User name is empty!", Toast.LENGTH_LONG).show();
+//        } else
+        if (pass1.trim().isEmpty() || pass2.trim().isEmpty()) {
             ret = false;
             Toast.makeText(this, "Password is empty!", Toast.LENGTH_LONG).show();
         } else if (!pass1.equals(pass2)) {
