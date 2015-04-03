@@ -12,15 +12,13 @@
     <string name="address">Address</string>
     <string name="phonenumber">Phone</string>
     <string name="cancel">Cancel</string>
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="menu">
+        <item>Main Page</item>
+        <item>Post Request</item>
+        <item>Posted Request</item>
+        <item>Accepted Request</item>
+        <item>Profile</item>
+        <item>Log out</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

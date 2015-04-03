@@ -157,7 +157,7 @@ public class RegisterActivity extends ActionBarActivity {
                 editor.putString(LoginActivity.pass, p);
                 editor.commit();
                 Intent it = new Intent();
-                it.setClass(RegisterActivity.this, MainActivity.class);
+                it.setClass(RegisterActivity.this, MainPageActivity.class);
                 startActivity(it);
             }
 

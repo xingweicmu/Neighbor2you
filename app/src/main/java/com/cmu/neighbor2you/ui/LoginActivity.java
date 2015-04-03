@@ -1,6 +1,5 @@
 package com.cmu.neighbor2you.ui;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.backend.userEndpoint.UserEndpoint;
 import com.cmu.backend.userEndpoint.model.User;
 import com.cmu.neighbor2you.R;
@@ -51,7 +49,7 @@ public class LoginActivity extends ActionBarActivity {
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(name)) {
             if (sharedpreferences.contains(pass)) {
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, MainPageActivity.class));
             }
         }
         super.onResume();
@@ -132,7 +130,7 @@ public class LoginActivity extends ActionBarActivity {
                 editor.putString(name, u);
                 editor.putString(pass, p);
                 editor.commit();
-                startActivity(new Intent(this.context, MainActivity.class));
+                startActivity(new Intent(this.context, MainPageActivity.class));
             }
         }
     }
