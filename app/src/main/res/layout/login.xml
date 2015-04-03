@@ -33,6 +33,7 @@
             android:layout_marginTop="15dp"
             android:background="#00ffffff"
             android:textColorHint="@android:color/holo_blue_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:hint="Email"
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"/>
@@ -45,6 +46,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="#00ffffff"
+            android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
             android:hint="Password"
             android:inputType="textPassword"
