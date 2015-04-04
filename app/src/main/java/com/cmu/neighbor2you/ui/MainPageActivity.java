@@ -249,6 +249,12 @@ public class MainPageActivity extends Activity {
             if (i == 2) {
                 rootView = inflater.inflate(R.layout.activity_posted_requests, container, false);
             }
+            if (i == 3) {
+                rootView = inflater.inflate(R.layout.activity_accepted_requests, container, false);
+            }
+            if (i == 4) {
+                rootView = inflater.inflate(R.layout.activity_profile, container, false);
+            }
 
             return rootView;
         }
