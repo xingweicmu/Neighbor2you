@@ -244,14 +244,12 @@ public class MainPageActivity extends Activity {
             String title = getResources().getStringArray(R.array.menu)[i];
             getActivity().setTitle(title);
             if (i == 1) {
-                rootView = inflater.inflate(R.layout.activity_main_content, container, false);
+                rootView = inflater.inflate(R.layout.activity_post_request, container, false);
             }
-            else if( i == 2){
-                //TODO
-                // Do something like this to add more pages
-//                rootView = inflater.inflate(R.layout.help, container, false);
-//                rootView.findViewById(R.id.button2).setOnClickListener();
+            if (i == 2) {
+                rootView = inflater.inflate(R.layout.activity_posted_requests, container, false);
             }
+
             return rootView;
         }
     }
