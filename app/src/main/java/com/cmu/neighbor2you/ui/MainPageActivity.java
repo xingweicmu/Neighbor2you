@@ -163,6 +163,15 @@ public class MainPageActivity extends Activity {
                     Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
                 }
                 return true;
+            case R.id.action_logout:
+                SharedPreferences sharedpreferences = getSharedPreferences
+                        (LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
+                Intent it = new Intent();
+                it.setClass(MainPageActivity.this, LoginActivity.class);
+                startActivity(it);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -242,16 +251,6 @@ public class MainPageActivity extends Activity {
                 // Do something like this to add more pages
 //                rootView = inflater.inflate(R.layout.help, container, false);
 //                rootView.findViewById(R.id.button2).setOnClickListener();
-            }
-            else if(i == 4){
-                rootView = inflater.inflate(R.layout.activity_logout, container, false);
-                rootView.findViewById(R.id.button).setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-
-                            }
-                        });
             }
             return rootView;
         }
