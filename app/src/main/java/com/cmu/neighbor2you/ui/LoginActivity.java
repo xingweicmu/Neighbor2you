@@ -17,8 +17,6 @@ import com.cmu.backend.userEndpoint.model.User;
 import com.cmu.neighbor2you.R;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -98,7 +96,7 @@ public class LoginActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://neighbor2you-ci.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

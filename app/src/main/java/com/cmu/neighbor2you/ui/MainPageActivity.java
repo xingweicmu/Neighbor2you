@@ -15,8 +15,6 @@ package com.cmu.neighbor2you.ui;/*
  */
 
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -29,7 +27,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,11 +35,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.adapter.MainPageListViewAdapter;
+
+import java.util.ArrayList;
 
 /**
  * This example illustrates a common usage of the DrawerLayout widget
@@ -79,6 +79,9 @@ public class MainPageActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mPlanetTitles;
+
+    private static ListView list;
+    private static MainPageListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +128,8 @@ public class MainPageActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+
     }
 
     @Override
@@ -151,7 +156,7 @@ public class MainPageActivity extends Activity {
             return true;
         }
         // Handle action buttons
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_websearch:
                 // create intent to perform web search for this planet
                 Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
@@ -187,6 +192,7 @@ public class MainPageActivity extends Activity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
+
         Fragment fragment = new PlanetFragment();
         Bundle args = new Bundle();
         args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
@@ -239,8 +245,35 @@ public class MainPageActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_main_content, container, false);
+            View rootView
+                    = inflater.inflate(R.layout.new_main_content, container, false);
+
+            list = (ListView) rootView.findViewById(R.id.list);
+
+            ArrayList<Request> requestsList = new ArrayList<Request>();
+
+            Request req = new Request();
+            req.setItemName("oil");
+            req.setRequester("Bin Lan");
+            req.setDeadline(123l);
+            requestsList.add(req);
+            // Getting adapter by passing xml data ArrayList
+            adapter = new MainPageListViewAdapter(getActivity(), requestsList);
+            list.setAdapter(adapter);
+
+
+            // Click event for single list row
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                }
+            });
+
+
             int i = getArguments().getInt(ARG_PLANET_NUMBER);
+
             String title = getResources().getStringArray(R.array.menu)[i];
             getActivity().setTitle(title);
             if (i == 1) {
