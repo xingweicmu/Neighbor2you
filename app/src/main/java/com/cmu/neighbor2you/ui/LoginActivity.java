@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,7 +99,7 @@ public class LoginActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://neighbor2you-ci.appspot.com/_ah/api/");
+                            .setRootUrl("https://n2y-ci.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
@@ -106,6 +107,7 @@ public class LoginActivity extends ActionBarActivity {
                 return myApiService.authenticate(params[0]).execute();
             } catch (IOException e) {
                 String s = e.getMessage().trim();
+                Log.v("TAG", s);
                 s = s.substring(s.indexOf("{"));
 
                 JsonParser parser = new JsonParser();
