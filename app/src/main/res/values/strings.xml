@@ -18,6 +18,7 @@
         <item>Posted Request</item>
         <item>Accepted Request</item>
         <item>Profile</item>
+        <item>Track Order</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

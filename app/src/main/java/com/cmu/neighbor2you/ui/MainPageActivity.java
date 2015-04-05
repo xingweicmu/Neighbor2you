@@ -288,6 +288,10 @@ public class MainPageActivity extends Activity {
             if (i == 4) {
                 rootView = inflater.inflate(R.layout.activity_profile, container, false);
             }
+            if (i == 5) {
+                rootView = inflater.inflate(R.layout.activity_trace_order, container, false);
+            }
+
 
             return rootView;
         }

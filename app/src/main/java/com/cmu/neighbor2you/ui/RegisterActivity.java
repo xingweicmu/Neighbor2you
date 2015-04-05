@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -128,6 +129,7 @@ public class RegisterActivity extends ActionBarActivity {
                 return myApiService.signUp(params[0]).execute();
             } catch (IOException e) {
                 String s = e.getMessage().trim();
+                Log.v("TAG",s);
                 s = s.substring(s.indexOf("{"));
 
                 JsonParser parser = new JsonParser();
