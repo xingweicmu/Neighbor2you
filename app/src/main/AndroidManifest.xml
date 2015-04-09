@@ -24,12 +24,25 @@
             android:name=".ui.MainPageActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity
-            android:name=".ui.PostRequest"
-            android:label="@string/title_activity_post_request" >
+            android:name=".ui.PostRequestActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+            android:label="Post request" >
         </activity>
         <activity
-            android:name=".ui.LogoutActivity"
-            android:label="@string/title_activity_logout" >
+            android:name=".ui.BaseActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.PostedRequestActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.AcceptedRequestActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
     </application>
 
