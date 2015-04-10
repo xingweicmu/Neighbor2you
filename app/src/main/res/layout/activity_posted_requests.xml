@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Posted Requests"
+                android:text="@string/Posted_Requests"
                 android:textColor="#ffffff"
 
                 android:textSize="30sp" />
@@ -54,14 +54,14 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Status:"
+                    android:text="@string/Status"
                     android:textSize="25sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Arrived"
+                    android:text="@string/Arrived"
                     android:textSize="25sp"/>
 
                 </LinearLayout>
@@ -90,50 +90,14 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Status:"
+                    android:text="@string/Status"
                     android:textSize="25sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Arrived"
-                    android:textSize="25sp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                >
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="30dp"
-                    android:text="Oil"
-                    android:textSize="25dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="Status:"
-                    android:textSize="25sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="Arrived"
+                    android:text="@string/Arrived"
                     android:textSize="25sp"/>
 
             </LinearLayout>
@@ -162,14 +126,14 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Status:"
+                    android:text="@string/Status"
                     android:textSize="25sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Arrived"
+                    android:text="@string/Arrived"
                     android:textSize="25sp"/>
 
             </LinearLayout>
@@ -198,14 +162,50 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Status:"
+                    android:text="@string/Status"
                     android:textSize="25sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="15dp"
-                    android:text="Arrived"
+                    android:text="@string/Arrived"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/oil"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="Oil"
+                    android:textSize="25dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/Status"
+                    android:textSize="25sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/Arrived"
                     android:textSize="25sp"/>
 
             </LinearLayout>

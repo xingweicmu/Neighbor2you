@@ -12,6 +12,25 @@
     <string name="address">Address</string>
     <string name="phonenumber">Phone</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="xlistview_header_hint_normal">Pull to refresh</string>
+    <string name="xlistview_header_hint_ready">Loose to refresh</string>
+    <string name="xlistview_header_hint_loading">Loading...</string>
+    <string name="xlistview_header_last_time">Recent update time：</string>
+    <string name="xlistview_footer_hint_normal">More</string>
+    <string name="xlistview_footer_hint_ready">Loose to load</string>
+    <string name="Posted_Requests">Posted Requests</string>
+    <string name="Status">Status</string>
+    <string name="List_item">List Item</string>
+    <string name="Post">Post</string>
+    <string name="Post_Item_Info">Post Item Info</string>
+    <string name="Item_Name">Item Name</string>
+    <string name="Price">Price</string>
+    <string name="Deadline">Deadline</string>
+    <string name="Confirm">Confirm</string>
+    <string name="Arrived">Arrived</string>
+    <string name="Profile">Profile</string>
+    <string name="update">Update</string>
     <string-array name="menu">
         <item>Main Page</item>
         <item>Post Request</item>
