@@ -34,7 +34,7 @@
             android:background="#00ffffff"
             android:textColorHint="@android:color/holo_blue_dark"
             android:textColor="@android:color/holo_blue_dark"
-            android:hint="Email"
+            android:hint="@string/email"
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"/>
 
@@ -48,7 +48,7 @@
             android:background="#00ffffff"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
-            android:hint="Password"
+            android:hint="@string/Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:onClick="login"/>
@@ -63,7 +63,7 @@
         android:layout_below="@id/linearLayout01"
         android:layout_marginTop="22dp"
         android:layout_marginBottom="22dp"
-        android:text="Login"
+        android:text="@string/Login"
         android:onClick="login"/>
     <Button
         android:id="@+id/btn_register"
@@ -74,7 +74,7 @@
         android:layout_below="@id/linearLayout01"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
-        android:text="Register"
+        android:text="@string/logout"
         android:onClick="gotoRegister"/>
     </LinearLayout>
 </RelativeLayout>

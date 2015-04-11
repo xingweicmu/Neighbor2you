@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Post Item Info"
+                android:text="@string/Post_Item_Info"
                 android:textColor="#ffffff"
 
                 android:textSize="30sp" />
@@ -61,7 +61,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="10dp"
-                            android:text="Item Name"
+                            android:text="@string/Item_Name"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:textSize="30dp"
@@ -89,7 +89,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Price:"
+                android:text="@string/Price"
                 android:id="@+id/textView"
                 android:textSize="25sp"
                 android:layout_gravity="center_vertical" />
@@ -119,7 +119,7 @@
 
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Deadline:"
+                    android:text="@string/Deadline"
                     android:id="@+id/textView2"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical" />
@@ -141,7 +141,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:background="#59C94D"
-            android:text="Confirm"
+            android:text="@string/Confirm"
             android:textSize="30dp"
             android:textColor="#ffffff"
             android:layout_height="40dp"

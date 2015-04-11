@@ -24,7 +24,7 @@
             android:id="@+id/et_res_email"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
             android:inputType="textEmailAddress"
@@ -37,7 +37,7 @@
             android:id="@+id/et_res_Pwd"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:hint="Password"
+            android:hint="@string/Password"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
             android:inputType="textPassword"
@@ -47,7 +47,7 @@
             android:id="@+id/et_res_conPwd"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
             android:inputType="textPassword"
@@ -58,7 +58,7 @@
             android:id="@+id/et_res_phone"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:hint="Phone"
+            android:hint="@string/phonenumber"
             android:inputType="textPassword"
             android:textColor="@android:color/holo_blue_dark"
             android:textColorHint="@android:color/holo_blue_dark"
@@ -73,7 +73,7 @@
 
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Register"
+            android:text="@string/Register"
             android:onClick="register"/>
 
 
