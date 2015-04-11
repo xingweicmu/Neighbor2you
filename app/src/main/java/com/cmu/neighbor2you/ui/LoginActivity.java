@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cmu.backend.requestEndpoint.RequestEndpoint;
 import com.cmu.backend.userEndpoint.UserEndpoint;
 import com.cmu.backend.userEndpoint.model.User;
 import com.cmu.neighbor2you.R;

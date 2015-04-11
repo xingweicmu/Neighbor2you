@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mangobin on 15-4-4.
@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class MainPageListViewAdapter extends BaseAdapter {
 
     private Activity activity;
-    private ArrayList<Request> data;
+    private List<Request> data;
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader;
 
-    public MainPageListViewAdapter(Activity a, ArrayList<Request> d) {
+    public MainPageListViewAdapter(Activity a, List<Request> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

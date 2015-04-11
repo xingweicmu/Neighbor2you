@@ -156,7 +156,7 @@ public class BaseActivity extends Activity {
                 finish();// finishes the current activity
                 break;
             case 1:
-                Intent intent = new Intent(this, ScanBarCodeActivity.class);
+                Intent intent = new Intent(this, PostRequestActivity.class);
                 startActivity(intent);
                 finish();// finishes the current activity
                 break;

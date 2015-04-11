@@ -71,14 +71,24 @@
                             android:layout_marginTop="5dp"
                             android:textSize="30sp"
                             android:text="Sunflower Oil"
-                            
-                            android:layout_height="wrap_content" />
+                            android:id="@+id/itemNameEditText"
+                            android:layout_height="wrap_content"
+                             />
                         </LinearLayout>
 
 
                     </LinearLayout>
                 </RelativeLayout>
-        <LinearLayout
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan"
+                android:id="@+id/scanbarcode"
+                android:layout_gravity="right" />
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -106,7 +116,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="25sp"
-                android:text="8.00"/>
+                android:text="8.00"
+                android:id="@+id/priceEditText" />
         </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,7 +156,8 @@
             android:textSize="30dp"
             android:textColor="#ffffff"
             android:layout_height="40dp"
-            android:id="@+id/confirm" />
+            android:id="@+id/confirm"
+            android:onClick="post" />
         </LinearLayout>
 
 
