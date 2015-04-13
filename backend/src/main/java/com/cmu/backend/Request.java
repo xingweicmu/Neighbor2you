@@ -13,7 +13,9 @@ import java.io.Serializable;
 public class Request implements Serializable {
     @Id
     private Long id;       //Key
+    @Index
     private String requester;
+    @Index
     private String acceptor;
     private String itemName;
     private double itemPrice;
@@ -23,15 +25,8 @@ public class Request implements Serializable {
     private double longitude;
     private long deadline;
     private boolean invalid;
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
+    private String url;
+    private String status;
     private double distance;
 
     public Request(){}
@@ -44,6 +39,30 @@ public class Request implements Serializable {
         this.longitude = longitude;
         this.deadline = deadline;
         this.invalid = invalid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public Long getId() {

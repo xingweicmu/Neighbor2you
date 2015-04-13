@@ -65,6 +65,14 @@ public class RequestEndpoint {
         return CollectionResponse.<Request>builder().setItems(records).setNextPageToken(cursorString).build();
     }
 
+    /**
+     * Retrieve surrounding requests given a certain geo point.
+     * @param cursorString
+     * @param count
+     * @param latitude latitude of the point
+     * @param longitude longitude of the ppint
+     * @return a list of Requests
+     */
     @ApiMethod(name = "getRequest")
     public CollectionResponse<Request> getRequestBasedOnLocation(@Nullable @Named("cursor") String cursorString,
                                                    @Nullable @Named("count") Integer count,
@@ -116,6 +124,94 @@ public class RequestEndpoint {
         return CollectionResponse.<Request>builder().setItems(result).setNextPageToken(cursorString).build();
     }
 
+    /**
+     * Retrieve accepted requests of acceptor
+     * @param cursorString
+     * @param count
+     * @param acceptorName acceptor name
+     * @return a list of requests
+     */
+    @ApiMethod(name = "getAcceptedRequest")
+    public CollectionResponse<Request> acceptedRequest(@Nullable @Named("cursor") String cursorString,
+                                                                 @Nullable @Named("count") Integer count,
+                                                                 @Named("acceptor") String acceptorName
+    ) {
+
+        Query<Request> query = ofy().load().type(Request.class).filter("acceptor",acceptorName);
+        if (count != null) query.limit(count);
+        if (cursorString != null && cursorString != "") {
+            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+        }
+
+        List<Request> records = new ArrayList<Request>();
+        QueryResultIterator<Request> iterator = query.iterator();
+        int num = 0;
+        while (iterator.hasNext()) {
+            records.add(iterator.next());
+            if (count != null) {
+                num++;
+                if (num == count) break;
+            }
+        }
+
+        //Find the next cursor
+        if (cursorString != null && cursorString != "") {
+            Cursor cursor = iterator.getCursor();
+            if (cursor != null) {
+                cursorString = cursor.toWebSafeString();
+            }
+        }
+        return CollectionResponse.<Request>builder().setItems(records).setNextPageToken(cursorString).build();
+    }
+
+    /**
+     * Retrieve posted Request of a requester.
+     * @param cursorString
+     * @param count
+     * @param requesterName requestor name
+     * @return a list of requests
+     */
+    @ApiMethod(name = "getPostedRequest")
+    public CollectionResponse<Request> postedRequest(@Nullable @Named("cursor") String cursorString,
+                                                          @Nullable @Named("count") Integer count,
+                                                          @Named("requester") String requesterName
+    ) {
+
+        Query<Request> query = ofy().load().type(Request.class).filter("requester",requesterName);
+        if (count != null) query.limit(count);
+        if (cursorString != null && cursorString != "") {
+            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+        }
+
+        List<Request> records = new ArrayList<Request>();
+        QueryResultIterator<Request> iterator = query.iterator();
+        int num = 0;
+        while (iterator.hasNext()) {
+            records.add(iterator.next());
+            if (count != null) {
+                num++;
+                if (num == count) break;
+            }
+        }
+
+        //Find the next cursor
+        if (cursorString != null && cursorString != "") {
+            Cursor cursor = iterator.getCursor();
+            if (cursor != null) {
+                cursorString = cursor.toWebSafeString();
+            }
+        }
+        return CollectionResponse.<Request>builder().setItems(records).setNextPageToken(cursorString).build();
+    }
+
+    /**
+     * Calculate distance between two geo point.
+     * @param lat1 latitude of point 1
+     * @param long1 longitude of point 1
+     * @param lat2 latitude of point 2
+     * @param long2 latitude of point 2
+     * @return the distance
+     */
     private double CalculateLength(double lat1, double long1, double lat2, double long2)
     {
         double d2r = Math.PI/180;
