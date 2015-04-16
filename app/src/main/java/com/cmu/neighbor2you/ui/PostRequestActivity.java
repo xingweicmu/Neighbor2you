@@ -1,5 +1,6 @@
 package com.cmu.neighbor2you.ui;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,7 +8,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.cmu.backend.requestEndpoint.RequestEndpoint;
@@ -31,6 +35,9 @@ public class PostRequestActivity extends BaseActivity {
     private EditText itemName;
     private EditText price;
     private GPSTracker gps;
+    private TimePicker tp;
+    private DatePicker dp;
+    private EditText time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class PostRequestActivity extends BaseActivity {
         gps.getLocation();
         itemName = (EditText) findViewById(R.id.itemNameEditText);
         price = (EditText) findViewById(R.id.p_priceEdit);
+        time = (EditText)findViewById(R.id.p_dueEdit);
         View btnScan = findViewById(R.id.scanbarcode);
 
         // Scan button
@@ -150,6 +158,35 @@ public class PostRequestActivity extends BaseActivity {
                 startActivity(new Intent(this.context, MainPageActivity.class));
             }
         }
+    }
+    public void showPickerDialog(View v) {
+
+        final Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(R.layout.date_time_layout);
+
+        dialog.setTitle("Deadline");
+        Button ok = (Button)dialog.findViewById(R.id.getTime);
+        Button conceal = (Button)dialog.findViewById(R.id.conceal);
+         tp = (TimePicker) dialog.findViewById(R.id.timePicker);
+         dp = (DatePicker) dialog.findViewById(R.id.datePicker);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strDateTime = (dp.getMonth()+1) + "/" + dp.getDayOfMonth() + "/"  + dp.getYear() +  " "+ tp.getCurrentHour() + ":" + tp.getCurrentMinute();
+                Log.v("time", strDateTime);
+                time.setText(strDateTime);
+                dialog.dismiss();
+            }
+        });
+        conceal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 }

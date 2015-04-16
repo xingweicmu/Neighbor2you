@@ -60,7 +60,7 @@ public class MainPageListViewAdapter extends BaseAdapter {
         title.setText(item.getItemName());
         poster.setText("Posted by " + item.getRequester());
         duration.setText(String.valueOf(item.getDeadline()));
-        distance.setText(String.valueOf(item.getDistance()).substring(0, 4) + " m");
+        distance.setText(String.valueOf(item.getDistance()).substring(0, 4) + " km");
       //  imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }

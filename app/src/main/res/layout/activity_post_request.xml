@@ -179,13 +179,13 @@
                     android:ellipsize="end"
                     android:hint="04/15 20:37"
                     android:id="@+id/p_dueEdit"
+                    android:onClick="showPickerDialog"
                     />
             </TableRow>
             </TableLayout>
 
             <Button
                 android:layout_below="@+id/p_table"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
@@ -195,8 +195,6 @@
                 android:text="Scan"
                 android:id="@+id/scanbarcode"
                 android:layout_gravity="right" />
-
-
 
         <Button
             android:layout_below="@+id/scanbarcode"
