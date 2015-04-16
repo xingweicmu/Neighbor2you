@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.util.ImageLoader;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,13 +24,13 @@ public class MainPageListViewAdapter extends BaseAdapter {
     private Activity activity;
     private List<Request> data;
     private static LayoutInflater inflater=null;
-    //public ImageLoader imageLoader;
+    public ImageLoader imageLoader;
 
     public MainPageListViewAdapter(Activity a, List<Request> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-       // imageLoader=new ImageLoader(activity.getApplicationContext());
+        imageLoader=new ImageLoader(activity.getApplicationContext());
     }
 
     public int getCount() {
@@ -48,10 +50,10 @@ public class MainPageListViewAdapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.list_row, null);
 
-        TextView title = (TextView)vi.findViewById(R.id.title); // title
-        TextView poster = (TextView)vi.findViewById(R.id.poster); // artist name
-        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
-        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
+        TextView title = (TextView)vi.findViewById(R.id.title);
+        TextView poster = (TextView)vi.findViewById(R.id.poster);
+        TextView duration = (TextView)vi.findViewById(R.id.duration);
+        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image);
         TextView distance = (TextView)vi.findViewById(R.id.distance);
         Request item = data.get(position);
 
@@ -59,10 +61,9 @@ public class MainPageListViewAdapter extends BaseAdapter {
 
         title.setText(item.getItemName());
         poster.setText("Posted by " + item.getRequester());
-        duration.setText(String.valueOf(item.getDeadline()));
-      //  distance.setText(String.valueOf(item.getDistance()).substring(0, 4) + " m");
-        distance.setText(String.valueOf(item.getDistance()) + " m");
-      //  imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
+        duration.setText(new Date(item.getDeadline()).toString());
+        distance.setText(Math.round(item.getDistance()*10.0)/10.0 + "km");
+        imageLoader.DisplayImage(item.getUrl(), thumb_image);
         return vi;
     }
 }

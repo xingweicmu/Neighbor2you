@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -46,7 +47,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Log.v("items",list.get(position-1).toString());
             }
         });
 
