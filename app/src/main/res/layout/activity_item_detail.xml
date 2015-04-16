@@ -37,7 +37,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
                     android:layout_alignBottom="@+id/itemNameEditText"
-                    android:text="@string/name"
+                    android:text="@string/Item_Name"
                     android:textColor="@android:color/black"
 
                     android:textSize="18sp"
@@ -55,6 +55,36 @@
                     android:ellipsize="end"
                     android:hint="Sunflower Oil"
                     android:id="@+id/ac_itemName"
+
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/itemNameEditText"
+                    android:text="@string/poster"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+
+
+                    android:padding="3dip" />
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/image"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:hint="Sunflower Oil"
+                    android:id="@+id/ac_needer"
 
                     />
             </TableRow>

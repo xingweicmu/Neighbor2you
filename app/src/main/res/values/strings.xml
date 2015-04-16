@@ -32,6 +32,7 @@
     <string name="Profile">Profile</string>
     <string name="update">Update</string>
     <string name="name">Name</string>
+    <string name="poster">Poster</string>
     <string-array name="menu">
         <item>Main Page</item>
         <item>Post Request</item>
