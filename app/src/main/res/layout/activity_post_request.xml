@@ -50,10 +50,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/ac_image"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:marqueeRepeatLimit="marquee_forever"
 
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
-                    android:ellipsize="end"
                     android:id="@+id/itemNameEditText"
 
                     />
