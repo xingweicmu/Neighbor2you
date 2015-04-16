@@ -24,6 +24,9 @@ public class WalmartUtil {
     }
 
     private Product parseJSONResponseAsProduct(String response) {
+        if(!response.contains("items")) {
+            return null;
+        }
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = parser.parse(response).getAsJsonObject();
         if(jsonObject.has("errors")) {

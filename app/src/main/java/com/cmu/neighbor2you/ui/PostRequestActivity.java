@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cmu.backend.requestEndpoint.RequestEndpoint;
@@ -15,6 +16,7 @@ import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.model.Product;
 import com.cmu.neighbor2you.util.GPSTracker;
+import com.cmu.neighbor2you.util.ImageLoader;
 import com.cmu.neighbor2you.util.WalmartUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -30,6 +32,9 @@ import jim.h.common.android.zxinglib.integrator.IntentResult;
 public class PostRequestActivity extends BaseActivity {
     private EditText itemName;
     private EditText price;
+    private EditText address;
+    private EditText phone;
+    private ImageView imageView;
     private GPSTracker gps;
 
     @Override
@@ -40,6 +45,9 @@ public class PostRequestActivity extends BaseActivity {
         gps.getLocation();
         itemName = (EditText) findViewById(R.id.itemNameEditText);
         price = (EditText) findViewById(R.id.p_priceEdit);
+        address = (EditText)findViewById(R.id.p_addressEdit);
+        phone = (EditText)findViewById(R.id.p_phoneEdit);
+        imageView = (ImageView)findViewById(R.id.image);
         View btnScan = findViewById(R.id.scanbarcode);
 
         // Scan button
@@ -56,6 +64,11 @@ public class PostRequestActivity extends BaseActivity {
         Request request = new Request();
         request.setItemName(itemName.getText().toString());
         request.setItemPrice(Double.parseDouble(price.getText().toString()));
+
+        // need furtherwork to check if it is null
+        request.setAddress(address.getText().toString());
+        request.setPhoneNumber(phone.getText().toString());
+
         SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs",
                 Context.MODE_PRIVATE);
         String requester = null;
@@ -112,8 +125,12 @@ public class PostRequestActivity extends BaseActivity {
             if (product != null) {
                 price.setText(String.valueOf(product.getPrice()));
                 itemName.setText(product.getName());
+                ImageLoader loader = new ImageLoader(this.context);
+                loader.DisplayImage(product.getThumbnailImage(),imageView);
                 Log.v("pppp", product.toString());
 
+            } else {
+                Toast.makeText(getBaseContext(),"This product information is not available!", Toast.LENGTH_LONG).show();
             }
         }
     }
