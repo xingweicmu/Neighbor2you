@@ -168,7 +168,12 @@ public class Request implements Serializable, Comparable<Request>{
         double distance1 = ((Request) request).getDistance();
 
         //ascending order
-        return (int)(distance1-this.distance);
+        if((this.distance - distance1)<0)
+            return -1;
+        else if(this.distance - distance1>0)
+            return 1;
+        else
+            return 0;
 
         //descending order
         //return compareQuantity - this.quantity;
