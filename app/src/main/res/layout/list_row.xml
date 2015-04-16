@@ -17,8 +17,8 @@
         android:layout_marginRight="5dip">
         <ImageView
             android:id="@+id/list_image"
-            android:layout_width="140dp"
-            android:layout_height="match_parent"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="6dip"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
+        android:ellipsize="end"
         android:layout_marginLeft="5dp"
         android:id="@+id/title"
         android:text="Sunflower Oil"
