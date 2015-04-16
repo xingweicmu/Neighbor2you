@@ -54,7 +54,7 @@
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:text="Sunflower Oil"
+                    android:hint="Sunflower Oil"
                     android:id="@+id/itemNameEditText"
 
                     />
@@ -85,7 +85,7 @@
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:text="$ 8.00"
+                    android:hint="$ 8.00"
                     android:id="@+id/p_priceEdit"
 
                     />
@@ -116,7 +116,7 @@
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:text="280 Easy Street"
+                    android:hint="280 Easy Street"
                     android:id="@+id/p_addressEdit"
 
                     />
@@ -147,7 +147,7 @@
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:text="(669)226-2111"
+                    android:hint="(669)226-2111"
                     android:id="@+id/p_phoneEdit"
 
                     />
@@ -174,21 +174,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/image"
-
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:text="04/15 20:37"
+                    android:hint="04/15 20:37"
                     android:id="@+id/p_dueEdit"
-
                     />
             </TableRow>
             </TableLayout>
-
-
-
-
-
 
             <Button
                 android:layout_below="@+id/p_table"
@@ -208,14 +201,10 @@
         <Button
             android:layout_below="@+id/scanbarcode"
             android:layout_width="match_parent"
-
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-
             android:text="@string/Confirm"
-
-
             android:layout_height="48dp"
             android:id="@+id/confirm"
             android:onClick="post" />
