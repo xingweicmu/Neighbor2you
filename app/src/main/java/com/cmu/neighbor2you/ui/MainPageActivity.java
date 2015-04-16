@@ -2,6 +2,7 @@ package com.cmu.neighbor2you.ui;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,6 +49,9 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("items",list.get(position-1).toString());
+                Intent it = new Intent(getApplicationContext(),MainPageItemDetailsActivity.class);
+                it.putExtra("id",list.get(position-1).getId());
+                startActivity(it);
             }
         });
 
@@ -73,7 +77,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-2.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

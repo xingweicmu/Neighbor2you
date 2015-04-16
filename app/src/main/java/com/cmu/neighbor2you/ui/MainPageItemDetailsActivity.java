@@ -1,20 +1,20 @@
 package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cmu.backend.requestEndpoint.RequestEndpoint;
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.util.ImageLoader;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by mangobin on 15-4-16.
@@ -43,6 +43,9 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         poster = (TextView)findViewById(R.id.ac_needer);
         image = (ImageView)findViewById(R.id.ac_image);
 
+        long id = getIntent().getLongExtra("id",0);
+        new GetRequestDetailsAsyncTask(this).execute(id);
+
     }
 
     private class GetRequestDetailsAsyncTask extends AsyncTask<Long, Void, Request> {
@@ -58,12 +61,12 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-2.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
             try {
-                return myApiService;
+                return myApiService.getRequestById(params[0]).execute();
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
@@ -73,8 +76,14 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         @Override
         public void onPostExecute(Request request) {
             if (request != null) {
-                Toast.makeText(getApplicationContext(), "Post success!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(this.context, MainPageActivity.class));
+                ImageLoader loader = new ImageLoader(this.context);
+                loader.DisplayImage(request.getUrl(),image);
+                itemName.setText(request.getItemName());
+                price.setText(String.valueOf(request.getItemPrice()));
+                address.setText(request.getAddress());
+                phone.setText(request.getPhoneNumber());
+                deadline.setText(new Date(request.getDeadline()).toString());
+                poster.setText(request.getRequester());
             }
         }
     }
