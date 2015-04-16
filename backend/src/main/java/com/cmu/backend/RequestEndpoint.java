@@ -277,6 +277,15 @@ public class RequestEndpoint {
         ofy().delete().entity(record).now();
     }
 
+    @ApiMethod(name = "getRequestById")
+    public Request getRequestById(@Named("id") Long id) throws NotFoundException {
+        Request record = findRecord(id);
+        if (record == null) {
+            throw new NotFoundException("Request Record does not exist");
+        }
+        return ofy().load().type(Request.class).id(id).now();
+    }
+
 
     //Private method to retrieve a <code>Request</code> record
     private Request findRecord(Long id) {
