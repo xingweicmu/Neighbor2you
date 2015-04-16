@@ -13,8 +13,13 @@ import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by mangobin on 15-4-4.
@@ -61,7 +66,10 @@ public class MainPageListViewAdapter extends BaseAdapter {
 
         title.setText(item.getItemName());
         poster.setText("Posted by " + item.getRequester());
-        duration.setText(new Date(item.getDeadline()).toString());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Timestamp stamp = new Timestamp(item.getDeadline());
+        Date date = new Date(stamp.getTime());
+        duration.setText(dateFormat.format(date));
         distance.setText(Math.round(item.getDistance()*10.0)/10.0 + "km");
         imageLoader.DisplayImage(item.getUrl(), thumb_image);
         return vi;
