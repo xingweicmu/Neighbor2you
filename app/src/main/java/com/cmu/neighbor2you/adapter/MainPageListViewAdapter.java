@@ -56,10 +56,11 @@ public class MainPageListViewAdapter extends BaseAdapter {
         Request item = data.get(position);
 
         // Setting all values in listview
+
         title.setText(item.getItemName());
         poster.setText("Posted by " + item.getRequester());
         duration.setText(String.valueOf(item.getDeadline()));
-        distance.setText(String.valueOf(item.getDistance()));
+        distance.setText(String.valueOf(item.getDistance()).substring(0, 4) + " m");
       //  imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }
