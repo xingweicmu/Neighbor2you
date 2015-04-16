@@ -2,166 +2,224 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EDF8FA"
         android:orientation="vertical"
         >
 
-        <RelativeLayout
-            android:id="@+id/title"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:background="#59C94D"
-
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/Post_Item_Info"
-                android:textColor="#ffffff"
-
-                android:textSize="30sp" />
-
-
-        </RelativeLayout>
-        <LinearLayout
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/oil"
+                        />
+        <TableLayout
+            android:id="@+id/p_table"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:layout_weight="70">
-            <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/image"
+            android:layout_marginLeft="10dp"
+            android:stretchColumns="1">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/itemNameEditText"
+                    android:text="@string/name"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+                    android:id="@+id/itemName"
+
+                    android:padding="3dip" />
+                <EditText
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/image"
+
+                    android:layout_toRightOf="@+id/itemName"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:text="Sunflower Oil"
+                    android:id="@+id/itemNameEditText"
+
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+
+                    android:text="@string/Price"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+                    android:id="@+id/p_price"
+
+                    android:padding="3dip" />
+                <EditText
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/image"
+
+                    android:layout_toRightOf="@+id/itemName"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:text="$ 8.00"
+                    android:id="@+id/p_priceEdit"
+
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/itemNameEditText"
+                    android:text="@string/address"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+                    android:id="@+id/p_address"
+
+                    android:padding="3dip" />
+                <EditText
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/image"
+
+                    android:layout_toRightOf="@+id/itemName"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:text="280 Easy Street"
+                    android:id="@+id/p_addressEdit"
+
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/itemNameEditText"
+                    android:text="@string/phonenumber"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+                    android:id="@+id/p_phone"
+
+                    android:padding="3dip" />
+                <EditText
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/image"
+
+                    android:layout_toRightOf="@+id/itemName"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:text="(669)226-2111"
+                    android:id="@+id/p_phoneEdit"
+
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/itemNameEditText"
+                    android:text="@string/Deadline"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="18sp"
+                    android:id="@+id/p_due"
+
+                    android:padding="3dip" />
+                <EditText
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/image"
+
+                    android:layout_toRightOf="@+id/itemName"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:text="04/15 20:37"
+                    android:id="@+id/p_dueEdit"
+
+                    />
+            </TableRow>
+            </TableLayout>
+
+
+
+
+
+
+            <Button
+                android:layout_below="@+id/p_table"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_height="150dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/image1"
-                        android:layout_width="140dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:src="@drawable/oil"
-
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/Item_Name"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:textSize="30dp"
-                            android:id="@+id/itemName" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:textSize="30sp"
-                            android:text="Sunflower Oil"
-                            android:id="@+id/itemNameEditText"
-                            android:layout_height="wrap_content"
-                             />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_height="48dp"
                 android:text="Scan"
                 android:id="@+id/scanbarcode"
                 android:layout_gravity="right" />
 
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/Price"
-                android:id="@+id/textView"
-                android:textSize="25sp"
-                android:layout_gravity="center_vertical" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="$"
-                android:textSize="25sp"/>
-            <EditText
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="25sp"
-                android:text="8.00"
-                android:id="@+id/priceEditText" />
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
 
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/Deadline"
-                    android:id="@+id/textView2"
-                    android:textSize="25sp"
-                    android:layout_gravity="center_vertical" />
 
-                <EditText
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="25sp"
-                    android:text="4 hour"/>
-            </LinearLayout>
-
-        </LinearLayout>
         <Button
+            android:layout_below="@+id/scanbarcode"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:background="#59C94D"
+
             android:text="@string/Confirm"
-            android:textSize="30dp"
-            android:textColor="#ffffff"
-            android:layout_height="40dp"
+
+
+            android:layout_height="48dp"
             android:id="@+id/confirm"
             android:onClick="post" />
-        </LinearLayout>
+        </RelativeLayout>
 </ScrollView>
 
 
