@@ -72,7 +72,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-2.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
