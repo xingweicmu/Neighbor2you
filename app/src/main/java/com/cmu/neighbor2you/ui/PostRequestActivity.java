@@ -39,7 +39,7 @@ public class PostRequestActivity extends BaseActivity {
         gps = new GPSTracker(this);
         gps.getLocation();
         itemName = (EditText) findViewById(R.id.itemNameEditText);
-        price = (EditText) findViewById(R.id.priceEditText);
+        price = (EditText) findViewById(R.id.p_priceEdit);
         View btnScan = findViewById(R.id.scanbarcode);
 
         // Scan button
