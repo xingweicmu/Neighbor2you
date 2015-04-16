@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by xing on 3/31/15.
  */
 @Entity
-public class Request implements Serializable {
+public class Request implements Serializable, Comparable<Request>{
     @Id
     private Long id;       //Key
     @Index
@@ -28,8 +28,11 @@ public class Request implements Serializable {
     private String url;
     private String status;
     private double distance;
+    private String address;
+    private String phoneNumber;
 
-    public Request(){}
+    public Request() {
+    }
 
     public Request(String requester, String itemName, double itemPrice, double latitude, double longitude, long deadline, boolean invalid) {
         this.requester = requester;
@@ -135,5 +138,40 @@ public class Request implements Serializable {
 
     public void setDeadline(long deadline) {
         this.deadline = deadline;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String toString() {
+        return "id: " + id + "\trequester: " + requester + "\tacceptor: " + acceptor +
+                "\titemName: " + itemName + "\titemPrice: " + itemPrice + "\tlatitude: " +
+                latitude + "\tlongitude: " + longitude + "\tdeadline: " + deadline +
+                "\tinvalid: " + invalid + url + "\tstatus: " + status + "\tdistance: " + distance;
+    }
+
+    public int compareTo(Request request) {
+
+        double distance1 = ((Request) request).getDistance();
+
+        //ascending order
+        return (int)(distance1-this.distance);
+
+        //descending order
+        //return compareQuantity - this.quantity;
+
     }
 }

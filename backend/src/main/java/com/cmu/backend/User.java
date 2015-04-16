@@ -77,4 +77,8 @@ public class User implements Serializable {
         this.location = location;
     }
 
+    public String toString(){
+        return "email: "+email+"\tuserName: "+userName+"\tpassword: "+password+"\taddress: "+address+"\tphoneNumber: "+phoneNumber+"\tlocation: "+location;
+    }
+
 }

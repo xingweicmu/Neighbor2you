@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.cmu.backend.OfyService.ofy;
@@ -80,7 +81,7 @@ public class RequestEndpoint {
                                                    @Named("longitude")double longitude
                                                     ) {
 
-        Query<Request> query = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0);
+//        Query<Request> query = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0);
         List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",longitude-0.003).filter("longitude <=",longitude+0.003).list();
         List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",latitude-0.05).filter("latitude <=",latitude+0.05).list();
         List<Request> result = new ArrayList<Request>();
@@ -95,31 +96,33 @@ public class RequestEndpoint {
                 }
             }
         }
-        // The following not used temporarily
-        if (count != null) query.limit(count);
-        System.out.println(result.size());
-        if (cursorString != null && cursorString != "") {
-            query = query.startAt(Cursor.fromWebSafeString(cursorString));
-        }
 
-        List<Request> records = new ArrayList<Request>();
-        QueryResultIterator<Request> iterator = query.iterator();
-        int num = 0;
-        while (iterator.hasNext()) {
-            records.add(iterator.next());
-            if (count != null) {
-                num++;
-                if (num == count) break;
-            }
-        }
+        Collections.sort(result);
+        // The following not used temporarily
+//        if (count != null) query.limit(count);
+//        System.out.println(result.size());
+//        if (cursorString != null && cursorString != "") {
+//            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+//        }
+//
+//        List<Request> records = new ArrayList<Request>();
+//        QueryResultIterator<Request> iterator = query.iterator();
+//        int num = 0;
+//        while (iterator.hasNext()) {
+//            records.add(iterator.next());
+//            if (count != null) {
+//                num++;
+//                if (num == count) break;
+//            }
+//        }
 
         //Find the next cursor
-        if (cursorString != null && cursorString != "") {
-            Cursor cursor = iterator.getCursor();
-            if (cursor != null) {
-                cursorString = cursor.toWebSafeString();
-            }
-        }
+//        if (cursorString != null && cursorString != "") {
+//            Cursor cursor = iterator.getCursor();
+//            if (cursor != null) {
+//                cursorString = cursor.toWebSafeString();
+//            }
+//        }
 
         return CollectionResponse.<Request>builder().setItems(result).setNextPageToken(cursorString).build();
     }
