@@ -4,8 +4,9 @@
    https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
 */
 
-package com.cmu.backend;
+package com.cmu.backend.service;
 
+import com.cmu.backend.model.MyBean;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;

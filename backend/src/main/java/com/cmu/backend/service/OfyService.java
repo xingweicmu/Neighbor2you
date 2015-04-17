@@ -1,5 +1,7 @@
-package com.cmu.backend;
+package com.cmu.backend.service;
 
+import com.cmu.backend.model.Request;
+import com.cmu.backend.model.User;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;

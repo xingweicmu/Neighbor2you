@@ -1,4 +1,4 @@
-package com.cmu.backend;
+package com.cmu.backend.model;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;

@@ -1,4 +1,4 @@
-package com.cmu.backend;
+package com.cmu.backend.model;
 
 /**
  * The object model for the data we are sending through endpoints

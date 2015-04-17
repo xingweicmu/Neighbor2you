@@ -1,5 +1,6 @@
-package com.cmu.backend;
+package com.cmu.backend.service;
 
+import com.cmu.backend.model.Request;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.cmu.backend.OfyService.ofy;
+import static com.cmu.backend.service.OfyService.ofy;
 
 /**
  * Created by xing on 3/31/15.
