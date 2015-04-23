@@ -141,7 +141,7 @@ public class RequestEndpoint {
                                                                  @Named("acceptor") String acceptorName
     ) {
 
-        Query<Request> query = ofy().load().type(Request.class).filter("acceptor",acceptorName);
+        Query<Request> query = ofy().load().type(Request.class).filter("acceptor",acceptorName).order("-status");
         if (count != null) query.limit(count);
         if (cursorString != null && cursorString != "") {
             query = query.startAt(Cursor.fromWebSafeString(cursorString));

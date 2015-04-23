@@ -29,6 +29,7 @@ public class Request implements Serializable, Comparable<Request>{
     private boolean invalid;
     private String url;
     public enum Status { STARTED, ONTHEWAY, ARRIVED };
+    @Index
     private Status status;
     private double distance;
     private String address;
