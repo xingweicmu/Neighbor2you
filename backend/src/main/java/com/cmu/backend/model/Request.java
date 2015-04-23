@@ -9,6 +9,7 @@ import java.io.Serializable;
 /**
  * Created by xing on 3/31/15.
  */
+
 @Entity
 public class Request implements Serializable, Comparable<Request>{
     @Id
@@ -26,10 +27,23 @@ public class Request implements Serializable, Comparable<Request>{
     private long deadline;
     private boolean invalid;
     private String url;
-    private String status;
+    public enum Status { STARTED, ONTHEWAY, ARRIVED };
+    private Status status;
     private double distance;
     private String address;
     private String phoneNumber;
+    @Index
+    private boolean accepted;
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+
 
     public Request() {
     }
@@ -44,11 +58,11 @@ public class Request implements Serializable, Comparable<Request>{
         this.invalid = invalid;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

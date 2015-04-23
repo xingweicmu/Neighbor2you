@@ -83,8 +83,8 @@ public class RequestEndpoint {
                                                     ) {
 
 //        Query<Request> query = ofy().load().type(Request.class).filter("latitude >=",-10.0).filter("latitude <=",10.0);
-        List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",longitude-0.003).filter("longitude <=",longitude+0.003).list();
-        List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",latitude-0.05).filter("latitude <=",latitude+0.05).list();
+        List<Request> longs = ofy().load().type(Request.class).filter("longitude >=",longitude-0.003).filter("longitude <=",longitude+0.003).filter("accepted ==",false).list();
+        List<Request> lats = ofy().load().type(Request.class).filter("latitude >=",latitude-0.05).filter("latitude <=",latitude+0.05).filter("accepted ==",false).list();
         List<Request> result = new ArrayList<Request>();
         for(Request lo: longs){
             for(Request la:lats){
@@ -170,12 +170,13 @@ public class RequestEndpoint {
 
     /**
      * Retrieve posted Request of a requester.
+     * Order by postedTime.
      * @param cursorString
      * @param count
      * @param requesterName requestor name
      * @return a list of requests
      */
-    @ApiMethod(name = "getPostedRequest")
+    @ApiMethod(name = "getPostedRequest") // Order by posted time
     public CollectionResponse<Request> postedRequest(@Nullable @Named("cursor") String cursorString,
                                                           @Nullable @Named("count") Integer count,
                                                           @Named("requester") String requesterName
