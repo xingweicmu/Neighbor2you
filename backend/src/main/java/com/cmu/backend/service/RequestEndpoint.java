@@ -176,36 +176,36 @@ public class RequestEndpoint {
      * @param requesterName requestor name
      * @return a list of requests
      */
-    @ApiMethod(name = "getPostedRequest") // Order by posted time
+    @ApiMethod(name = "getPostedRequest") //TODO Order by deadline, but seems ordering by posted time makes more sense
     public CollectionResponse<Request> postedRequest(@Nullable @Named("cursor") String cursorString,
                                                           @Nullable @Named("count") Integer count,
                                                           @Named("requester") String requesterName
     ) {
 
-        Query<Request> query = ofy().load().type(Request.class).filter("requester",requesterName);
-        if (count != null) query.limit(count);
-        if (cursorString != null && cursorString != "") {
-            query = query.startAt(Cursor.fromWebSafeString(cursorString));
-        }
-
-        List<Request> records = new ArrayList<Request>();
-        QueryResultIterator<Request> iterator = query.iterator();
-        int num = 0;
-        while (iterator.hasNext()) {
-            records.add(iterator.next());
-            if (count != null) {
-                num++;
-                if (num == count) break;
-            }
-        }
-
-        //Find the next cursor
-        if (cursorString != null && cursorString != "") {
-            Cursor cursor = iterator.getCursor();
-            if (cursor != null) {
-                cursorString = cursor.toWebSafeString();
-            }
-        }
+        List<Request> records = ofy().load().type(Request.class).filter("requester",requesterName).order("deadline").list();
+//        if (count != null) query.limit(count);
+//        if (cursorString != null && cursorString != "") {
+//            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+//        }
+//
+//        List<Request> records = new ArrayList<Request>();
+//        QueryResultIterator<Request> iterator = query.iterator();
+//        int num = 0;
+//        while (iterator.hasNext()) {
+//            records.add(iterator.next());
+//            if (count != null) {
+//                num++;
+//                if (num == count) break;
+//            }
+//        }
+//
+//        //Find the next cursor
+//        if (cursorString != null && cursorString != "") {
+//            Cursor cursor = iterator.getCursor();
+//            if (cursor != null) {
+//                cursorString = cursor.toWebSafeString();
+//            }
+//        }
         return CollectionResponse.<Request>builder().setItems(records).setNextPageToken(cursorString).build();
     }
 

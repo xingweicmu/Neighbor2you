@@ -24,6 +24,7 @@ public class Request implements Serializable, Comparable<Request>{
     private double latitude;
     @Index
     private double longitude;
+    @Index
     private long deadline;
     private boolean invalid;
     private String url;
