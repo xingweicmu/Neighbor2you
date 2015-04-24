@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/posted_list"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
@@ -14,7 +14,7 @@
         android:background="@drawable/image_bg"
         android:layout_marginRight="5dip">
         <ImageView
-            android:id="@+id/list_image"
+            android:id="@+id/posted_list_image"
             android:layout_width="50dp"
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
@@ -61,7 +61,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginRight="5dp"
         android:layout_alignParentRight="true"
         android:textSize="19sp"
         android:layout_centerInParent="true"
