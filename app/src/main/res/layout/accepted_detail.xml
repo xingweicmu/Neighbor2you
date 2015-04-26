@@ -150,37 +150,7 @@
 
                     />
             </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
 
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignBottom="@+id/itemNameEditText"
-                    android:text="@string/phonenumber"
-                    android:textColor="@android:color/black"
-
-                    android:textSize="18sp"
-
-
-                    android:padding="3dip" />
-                <TextView
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/ac_image"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_toRightOf="@+id/itemName"
-                    android:textSize="18sp"
-                    android:ellipsize="end"
-                    android:hint="(669)226-2111"
-                    android:id="@+id/ac_phone"
-
-                    />
-            </TableRow>
             <TableRow >
                 <TextView
                     android:layout_width="wrap_content"
@@ -212,7 +182,7 @@
         <Button
             android:layout_below="@+id/p_table"
             style="@style/button_style"
-            android:text="Accept"
+            android:text="Make a Phone Call"
             android:id="@+id/accept"
             android:layout_gravity="right" />
 

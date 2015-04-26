@@ -63,9 +63,9 @@ public class PostRequestActivity extends BaseActivity {
         price = (EditText) findViewById(R.id.p_priceEdit);
         address = (EditText) findViewById(R.id.p_addressEdit);
         phone = (EditText) findViewById(R.id.p_phoneEdit);
-        imageView = (ImageView) findViewById(R.id.ac_image);
+        imageView = (ImageView) findViewById(R.id.posted_image);
         time = (EditText) findViewById(R.id.p_dueEdit);
-        View btnScan = findViewById(R.id.scanbarcode);
+        View btnScan = findViewById(R.id.posted_image);
         request = new Request();
 
         // Scan button
