@@ -16,12 +16,18 @@ import android.widget.Toast;
 import com.cmu.backend.userEndpoint.UserEndpoint;
 import com.cmu.backend.userEndpoint.model.User;
 import com.cmu.neighbor2you.R;
+import com.cmu.newbackend.registration.Registration;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -61,12 +67,14 @@ public class LoginActivity extends ActionBarActivity {
             User user = new User();
             user.setEmail(emailS);
             user.setPassword(passwordS1);
+            new GcmRegistrationAsyncTask(this).execute();
             new LoginAsyncTask(this).execute(user);
         } else {
             Toast.makeText(this, "Email is malformed!", Toast.LENGTH_LONG).show();
         }
 
     }
+
 
     public void gotoRegister(View v) {
         startActivity(new Intent(this, RegisterActivity.class));
