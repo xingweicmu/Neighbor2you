@@ -3,24 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="80dp"
     android:padding="5dip"
-    android:background="@drawable/list_selector"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <LinearLayout android:id="@+id/posted_thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="3dip"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/image_bg"
+        android:background="@color/white"
         android:layout_marginRight="5dip">
         <ImageView
             android:id="@+id/posted_list_image"
             android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="6dip"
-
+            android:layout_height="match_parent"
             android:src="@drawable/oil"
 
             />
@@ -63,10 +58,11 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:layout_alignParentRight="true"
-        android:textSize="19sp"
+        android:textSize="22sp"
         android:layout_centerInParent="true"
         android:id="@+id/edit_posted_status"
-        android:text="On the way"/>
+        android:text="On the way"
+        android:textColor="@color/text_grey"/>
 
 
 

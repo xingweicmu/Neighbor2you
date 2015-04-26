@@ -1,11 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/bg_blue"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDF8FA"
         android:orientation="vertical"
         >
 
@@ -133,7 +133,19 @@
                 android:textSize="25sp"
                 android:text="Arrived"/>
         </LinearLayout>
-
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:text="Make a Phone Call"
+            style="@style/button_style"
+            android:id="@+id/phone_call"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:text="Received"
+            style="@style/button_style"
+            android:id="@+id/receive_but"/>
     </LinearLayout>
+
 
 </ScrollView>
