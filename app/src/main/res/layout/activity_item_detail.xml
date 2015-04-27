@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/oil"
+            android:src="@drawable/noimage"
             />
         <TableLayout
             android:id="@+id/p_table"
@@ -220,7 +220,8 @@
             android:layout_height="48dp"
             android:text="Accept"
             android:id="@+id/accept"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:onClick="acceptRequest" />
 
 
     </RelativeLayout>

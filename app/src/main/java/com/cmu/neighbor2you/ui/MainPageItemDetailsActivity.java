@@ -1,10 +1,14 @@
 package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmu.backend.requestEndpoint.RequestEndpoint;
 import com.cmu.backend.requestEndpoint.model.Request;
@@ -28,6 +32,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
     private TextView deadline;
     private TextView poster;
     private ImageView image;
+    private Request req;
 
 
     @Override
@@ -45,6 +50,21 @@ public class MainPageItemDetailsActivity extends BaseActivity {
 
         long id = getIntent().getLongExtra("id",0);
         new GetRequestDetailsAsyncTask(this).execute(id);
+
+    }
+
+
+    public void acceptRequest(View view) {
+        SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs",
+                Context.MODE_PRIVATE);
+        String acceptor = sharedPrefs.getString("emailKey", "NUll");
+        req.setAccepted(true);
+        req.setAcceptor(acceptor);
+
+        if(req != null) {
+            new AcceptRequestAsyncTask(this).execute(req);
+            this.finish();
+        }
 
     }
 
@@ -76,6 +96,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         @Override
         public void onPostExecute(Request request) {
             if (request != null) {
+                req = request;
                 ImageLoader loader = new ImageLoader(this.context);
                 loader.DisplayImage(request.getUrl(),image);
                 itemName.setText(request.getItemName());
@@ -88,6 +109,39 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         }
     }
 
+    private class AcceptRequestAsyncTask extends AsyncTask<Request, Void, Request> {
+        private RequestEndpoint myApiService = null;
+        private Context context;
+
+        public AcceptRequestAsyncTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public Request doInBackground(Request... params) {
+            if (myApiService == null) {
+                RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null)
+                        .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
+                myApiService = builder.build();
+            }
+
+            try {
+                return myApiService.updateRequest(params[0]).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        public void onPostExecute(Request request) {
+            if (request != null) {
+                Toast.makeText(getApplicationContext(), "Accept success!", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this.context, MainPageActivity.class));
+            }
+        }
+    }
 
 
 }
