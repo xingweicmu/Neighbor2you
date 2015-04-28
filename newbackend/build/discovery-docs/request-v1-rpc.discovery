@@ -1,0 +1,337 @@
+{
+ "kind": "discovery#rpcDescription",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/hJPpYQjSUHlRNu6ExZcQUcRV1gE\"",
+ "discoveryVersion": "v1",
+ "id": "request:v1",
+ "name": "request",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "newbackend.cmu.com",
+ "ownerName": "newbackend.cmu.com",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rpc",
+ "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
+ "rpcUrl": "https://myApplicationId.appspot.com/_ah/api/rpc",
+ "rpcPath": "/_ah/api/rpc",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "CollectionResponse_Request": {
+   "id": "CollectionResponse_Request",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Request"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "Request": {
+   "id": "Request",
+   "type": "object",
+   "properties": {
+    "accepted": {
+     "type": "boolean"
+    },
+    "acceptor": {
+     "type": "string"
+    },
+    "address": {
+     "type": "string"
+    },
+    "deadline": {
+     "type": "string",
+     "format": "int64"
+    },
+    "distance": {
+     "type": "number",
+     "format": "double"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "invalid": {
+     "type": "boolean"
+    },
+    "itemName": {
+     "type": "string"
+    },
+    "itemPrice": {
+     "type": "number",
+     "format": "double"
+    },
+    "latitude": {
+     "type": "number",
+     "format": "double"
+    },
+    "longitude": {
+     "type": "number",
+     "format": "double"
+    },
+    "phoneNumber": {
+     "type": "string"
+    },
+    "requester": {
+     "type": "string"
+    },
+    "status": {
+     "$ref": "Status"
+    },
+    "url": {
+     "type": "string"
+    }
+   }
+  },
+  "Status": {
+   "id": "Status",
+   "type": "string",
+   "enum": [
+    "ARRIVED",
+    "ONTHEWAY",
+    "STARTED"
+   ],
+   "enumDescriptions": [
+    "",
+    "",
+    ""
+   ]
+  }
+ },
+ "methods": {
+  "request.getRequest": {
+   "id": "request.getRequest",
+   "allowGet": true,
+   "parameters": {
+    "count": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "cursor": {
+     "type": "string"
+    },
+    "latitude": {
+     "type": "number",
+     "required": true,
+     "format": "double"
+    },
+    "longitude": {
+     "type": "number",
+     "required": true,
+     "format": "double"
+    }
+   },
+   "parameterOrder": [
+    "latitude",
+    "longitude"
+   ],
+   "returns": {
+    "$ref": "CollectionResponse_Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.getRequestBasedOnAcceptor": {
+   "id": "request.getRequestBasedOnAcceptor",
+   "allowGet": true,
+   "parameters": {
+    "acceptor": {
+     "type": "string",
+     "required": true
+    },
+    "count": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "cursor": {
+     "type": "string"
+    }
+   },
+   "parameterOrder": [
+    "acceptor"
+   ],
+   "returns": {
+    "$ref": "CollectionResponse_Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.getRequestBasedOnRequester": {
+   "id": "request.getRequestBasedOnRequester",
+   "allowGet": true,
+   "parameters": {
+    "count": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "cursor": {
+     "type": "string"
+    },
+    "requester": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "requester"
+   ],
+   "returns": {
+    "$ref": "CollectionResponse_Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.getRequestById": {
+   "id": "request.getRequestById",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.insertRequest": {
+   "id": "request.insertRequest",
+   "parameters": {
+    "resource": {
+     "$ref": "Request"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.listRequest": {
+   "id": "request.listRequest",
+   "allowGet": true,
+   "parameters": {
+    "count": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "cursor": {
+     "type": "string"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.removeRequest": {
+   "id": "request.removeRequest",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "request.updateRequest": {
+   "id": "request.updateRequest",
+   "parameters": {
+    "resource": {
+     "$ref": "Request"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Request"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

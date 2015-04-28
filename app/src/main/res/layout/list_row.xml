@@ -27,7 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="6dip"
 
-            android:src="@drawable/oil"
+            android:src="@drawable/noimage"
 
             />
     </LinearLayout>

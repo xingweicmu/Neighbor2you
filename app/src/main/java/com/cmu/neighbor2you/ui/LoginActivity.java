@@ -16,18 +16,12 @@ import android.widget.Toast;
 import com.cmu.backend.userEndpoint.UserEndpoint;
 import com.cmu.backend.userEndpoint.model.User;
 import com.cmu.neighbor2you.R;
-import com.cmu.newbackend.registration.Registration;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -105,7 +99,7 @@ public class LoginActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                            .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
+                            .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
