@@ -6,31 +6,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by mangobin on 15-4-4.
+ * Created by mangobin on 15-4-28.
  */
-public class MainPageListViewAdapter extends BaseAdapter {
-
+public class AcceptedRequestListViewAdapter extends BaseAdapter {
     private Activity activity;
     private List<Request> data;
     private static LayoutInflater inflater=null;
     public ImageLoader imageLoader;
 
-    public MainPageListViewAdapter(Activity a, List<Request> d) {
+    public AcceptedRequestListViewAdapter(Activity a, List<Request> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,27 +49,28 @@ public class MainPageListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.list_row, null);
+            vi = inflater.inflate(R.layout.activity_accepted_requests, null);
 
-        TextView title = (TextView)vi.findViewById(R.id.title);
-        TextView poster = (TextView)vi.findViewById(R.id.poster);
-        TextView duration = (TextView)vi.findViewById(R.id.duration);
-        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image);
-        TextView distance = (TextView)vi.findViewById(R.id.distance);
+        TextView title = (TextView)vi.findViewById(R.id.accepted_title);
+        Spinner status = (Spinner)vi.findViewById(R.id.accepted_status_spinner);
+        ImageView thumb_image=(ImageView)vi.findViewById(R.id.accepted_list_image);
         Request item = data.get(position);
 
         // Setting all values in listview
 
         title.setText(item.getItemName());
-        poster.setText("Posted by " + item.getRequester());
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Timestamp stamp = new Timestamp(item.getDeadline());
-        Date date = new Date(stamp.getTime());
-        duration.setText(dateFormat.format(date));
-        distance.setText(Math.round(item.getDistance()*10.0)/10.0 + "km");
-        if(item.getUrl() != null && !item.getUrl().trim().isEmpty()) {
-            imageLoader.DisplayImage(item.getUrl(), thumb_image);
-        }
+        imageLoader.DisplayImage(item.getUrl(), thumb_image);
+        status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("spinner item", parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         return vi;
     }
 }

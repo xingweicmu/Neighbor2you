@@ -14,7 +14,7 @@ import com.cmu.backend.requestEndpoint.RequestEndpoint;
 import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
-import com.cmu.neighbor2you.adapter.MainPageListViewAdapter;
+import com.cmu.neighbor2you.adapter.PostedRequestListViewAdapter;
 import com.cmu.neighbor2you.view.XListView;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -28,7 +28,7 @@ import java.util.List;
 public class PostedRequestActivity extends BaseActivity implements XListView.IXListViewListener {
 
     private static XListView listview;
-    private static MainPageListViewAdapter adapter;
+    private static PostedRequestListViewAdapter adapter;
 
 
     private Handler mHandler;
@@ -41,6 +41,9 @@ public class PostedRequestActivity extends BaseActivity implements XListView.IXL
 
         listview = (XListView) findViewById(R.id.list);
 
+        /**
+         * to modify
+         */
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -79,7 +82,7 @@ public class PostedRequestActivity extends BaseActivity implements XListView.IXL
             try {
                 SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String requester = sharedPrefs.getString("emailKey", "NUll");
-                return myApiService.getPostedRequest(requester).execute();
+                return myApiService.getRequestBasedOnRequester(requester).execute();
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
@@ -94,7 +97,7 @@ public class PostedRequestActivity extends BaseActivity implements XListView.IXL
                 Log.d("main2", "111");
                 if (list != null && !list.isEmpty()) {
                     Log.d("main3", "main");
-                    adapter = new MainPageListViewAdapter(PostedRequestActivity.this, list);
+                    adapter = new PostedRequestListViewAdapter(PostedRequestActivity.this, list);
                     listview.setAdapter(adapter);
                 } else {
                     Log.d("main4", "main");
@@ -124,7 +127,7 @@ public class PostedRequestActivity extends BaseActivity implements XListView.IXL
                 list.clear();
                 geneItems();
                 adapter.notifyDataSetChanged();
-                adapter = new MainPageListViewAdapter(PostedRequestActivity.this, list);
+                adapter = new PostedRequestListViewAdapter(PostedRequestActivity.this, list);
                 listview.setAdapter(adapter);
                 onLoad();
             }
