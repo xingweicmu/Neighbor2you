@@ -1,6 +1,5 @@
-package com.cmu.backend.service;
+package com.cmu.newbackend;
 
-import com.cmu.backend.model.Request;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -17,13 +16,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.cmu.backend.service.OfyService.ofy;
+import static com.cmu.newbackend.OfyService.ofy;
 
 /**
  * Created by xing on 3/31/15.
  */
 
-@Api(name = "requestEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.cmu.com", ownerName = "backend.cmu.com", packagePath=""))
+//@Api(name = "requestEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.cmu.com", ownerName = "backend.cmu.com", packagePath=""))
+@Api(name = "request", version = "v1", namespace = @ApiNamespace(ownerDomain = "newbackend.cmu.com", ownerName = "newbackend.cmu.com", packagePath = ""))
 
 public class RequestEndpoint {
 
@@ -263,6 +263,14 @@ public class RequestEndpoint {
             throw new NotFoundException("Request Record does not exist");
         }
         ofy().save().entity(request).now();
+
+        //invoke MessagingEndpoint to send notification
+        try {
+            MessagingEndpoint messagingEndpoint = new MessagingEndpoint();
+            messagingEndpoint.sendMessage("test");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return request;
     }
 

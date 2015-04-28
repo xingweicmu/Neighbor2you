@@ -15,10 +15,30 @@ public class RegistrationRecord {
 
     @Index
     private String regId;
-    // you can add more fields...
+    @Index
+    private String email;
+
 
     public RegistrationRecord() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    // you can add more fields...
+
 
     public String getRegId() {
         return regId;
