@@ -47,10 +47,10 @@
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="title_activity_post_request">PostRequest</string>
     <string-array name="status">
-    <item>On the way</item>
-    <item>Buying</item>
-    <item>Delivery</item>
-    <item>Arrived</item>
+    <item>WAITING</item>
+    <item>STARTED</item>
+    <item>ONTHEWAY</item>
+    <item>ARRIVED</item>
     </string-array>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_logout">LogoutActivity</string>

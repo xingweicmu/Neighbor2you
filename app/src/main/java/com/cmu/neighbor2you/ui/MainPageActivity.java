@@ -37,7 +37,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_main_content);
+        setContentView(R.layout.main_page_container);
         gps = new GPSTracker(this);
         gps.getLocation();
 
@@ -76,7 +76,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
@@ -90,20 +90,12 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
 
         @Override
         public void onPostExecute(CollectionResponseRequest reqList) {
-            Log.d("main1","111");
             if (reqList != null) {
                 list = reqList.getItems();
-                Log.d("main2","111");
                 if (list != null && !list.isEmpty()) {
-                    Log.d("main3","main");
                     adapter = new MainPageListViewAdapter(MainPageActivity.this, list);
                     listview.setAdapter(adapter);
-                } else {
-                    Log.d("main4","main");
                 }
-            }
-            if(reqList == null) {
-                Log.d("main5","111");
             }
         }
     }

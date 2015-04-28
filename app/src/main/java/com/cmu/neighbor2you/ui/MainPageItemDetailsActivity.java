@@ -39,15 +39,15 @@ public class MainPageItemDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_detail);
+        setContentView(R.layout.main_page_item_detail);
 
-        itemName = (TextView) findViewById(R.id.ac_itemName);
-        price = (TextView) findViewById(R.id.ac_price);
-        address = (TextView)findViewById(R.id.ac_address);
-        phone = (TextView)findViewById(R.id.ac_phone);
-        deadline = (TextView)findViewById(R.id.ac_due);
-        poster = (TextView)findViewById(R.id.ac_needer);
-        image = (ImageView)findViewById(R.id.ac_image);
+        itemName = (TextView) findViewById(R.id.main_itemName);
+        price = (TextView) findViewById(R.id.main_price);
+        address = (TextView)findViewById(R.id.main_address);
+        phone = (TextView)findViewById(R.id.main_phone);
+        deadline = (TextView)findViewById(R.id.main_due);
+        poster = (TextView)findViewById(R.id.main_needer);
+        image = (ImageView)findViewById(R.id.main_image);
 
         long id = getIntent().getLongExtra("id",0);
         new GetRequestDetailsAsyncTask(this).execute(id);
@@ -61,6 +61,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         String acceptor = sharedPrefs.getString("emailKey", "NUll");
         req.setAccepted(true);
         req.setAcceptor(acceptor);
+        req.setStatus("STARTED");
 
         if(req != null) {
             new AcceptRequestAsyncTask(this).execute(req);
@@ -82,7 +83,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
@@ -124,7 +125,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

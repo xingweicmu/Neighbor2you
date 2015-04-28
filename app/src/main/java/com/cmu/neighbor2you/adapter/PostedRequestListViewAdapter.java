@@ -46,7 +46,7 @@ public class PostedRequestListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.activity_posted_requests, null);
+            vi = inflater.inflate(R.layout.posted_requests_list_row, null);
 
         TextView title = (TextView)vi.findViewById(R.id.posted_title);
         TextView status = (TextView)vi.findViewById(R.id.edit_posted_status);
@@ -57,7 +57,6 @@ public class PostedRequestListViewAdapter extends BaseAdapter {
 
         title.setText(item.getItemName());
         status.setText(item.getStatus());
-       // Log.d("status11",item.getStatus());
         imageLoader.DisplayImage(item.getUrl(), thumb_image);
         return vi;
     }

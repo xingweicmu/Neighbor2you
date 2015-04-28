@@ -99,7 +99,7 @@ public class LoginActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                            .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
+                            .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

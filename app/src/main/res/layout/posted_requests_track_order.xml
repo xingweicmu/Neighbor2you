@@ -43,12 +43,13 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
 
-                        android:text="Dave"
+                        android:text="Waiting"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="@color/background_floating_material_dark"
-                        android:layout_height="65dp" />
+                        android:layout_height="65dp"
+                        android:id="@+id/track_order_buyer" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_marginLeft="10dp"
@@ -58,7 +59,8 @@
                         android:gravity="center"
                         android:textSize="18sp"
                         android:textStyle="italic"
-                        android:layout_height="30dp" />
+                        android:layout_height="30dp"
+                        />
 
 
                 </LinearLayout>

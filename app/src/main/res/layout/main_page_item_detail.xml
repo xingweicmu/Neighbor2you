@@ -10,7 +10,7 @@
         >
 
         <ImageView
-            android:id="@+id/ac_image"
+            android:id="@+id/main_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginLeft="10dp"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/ac_image"
+            android:layout_below="@+id/main_image"
             android:layout_marginLeft="10dp"
             android:stretchColumns="1">
             <TableRow>
@@ -49,11 +49,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:id="@+id/ac_itemName"
+                    android:id="@+id/main_itemName"
 
                     />
             </TableRow>
@@ -78,12 +78,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:hint="Sunflower Oil"
-                    android:id="@+id/ac_needer"
+                    android:id="@+id/main_needer"
 
                     />
             </TableRow>
@@ -108,13 +107,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:textColor="@android:color/darker_gray"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:hint="$ 8.00"
-                    android:id="@+id/ac_price"
+                    android:id="@+id/main_price"
 
                     />
             </TableRow>
@@ -139,13 +137,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:textColor="@android:color/darker_gray"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:hint="280 Easy Street"
-                    android:id="@+id/ac_address"
+                    android:id="@+id/main_address"
 
                     />
             </TableRow>
@@ -170,13 +167,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:textColor="@android:color/darker_gray"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:hint="(669)226-2111"
-                    android:id="@+id/ac_phone"
+                    android:id="@+id/main_phone"
 
                     />
             </TableRow>
@@ -197,13 +193,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/ac_image"
+                    android:layout_below="@+id/main_image"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
-                    android:hint="04/15 20:37"
                     android:textColor="@android:color/darker_gray"
-                    android:id="@+id/ac_due"
+                    android:id="@+id/main_due"
                     />
             </TableRow>
         </TableLayout>

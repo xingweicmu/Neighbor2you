@@ -49,7 +49,7 @@ public class AcceptedRequestListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.activity_accepted_requests, null);
+            vi = inflater.inflate(R.layout.accepted_requests_list_row, null);
 
         TextView title = (TextView)vi.findViewById(R.id.accepted_title);
         Spinner status = (Spinner)vi.findViewById(R.id.accepted_status_spinner);
@@ -63,7 +63,9 @@ public class AcceptedRequestListViewAdapter extends BaseAdapter {
         status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("spinner item", parent.getItemAtPosition(position).toString());
+                String newStatus = parent.getItemAtPosition(position).toString();
+                Log.d("spinner item", newStatus);
+                //item.setStatus(newStatus);
             }
 
             @Override
@@ -73,4 +75,7 @@ public class AcceptedRequestListViewAdapter extends BaseAdapter {
         });
         return vi;
     }
+
+
+
 }

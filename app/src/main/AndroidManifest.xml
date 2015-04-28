@@ -65,11 +65,15 @@
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
-            android:name=".ui.TraceOrderActivtiy"
+            android:name=".ui.TrackOrderActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.MainPageItemDetailsActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.AcceptedRequestItemDetailActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity

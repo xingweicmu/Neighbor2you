@@ -177,7 +177,7 @@ public class BaseActivity extends Activity {
                 finish();
                 break;
             case 5:
-                Intent intent4 = new Intent(this, TraceOrderActivtiy.class);
+                Intent intent4 = new Intent(this, TrackOrderActivity.class);
                 startActivity(intent4);
                 finish();
                 break;

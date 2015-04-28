@@ -2,7 +2,6 @@ package com.cmu.neighbor2you.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,7 @@ public class MainPageListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.list_row, null);
+            vi = inflater.inflate(R.layout.main_page_list_row, null);
 
         TextView title = (TextView)vi.findViewById(R.id.title);
         TextView poster = (TextView)vi.findViewById(R.id.poster);
