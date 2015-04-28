@@ -79,7 +79,7 @@ public class PostedRequestActivity extends BaseActivity implements XListView.IXL
             try {
                 SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String requester = sharedPrefs.getString("emailKey", "NUll");
-                return myApiService.getPostedRequest(requester).execute();
+                return myApiService.getRequestBasedOnRequester(requester).execute();
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;

@@ -267,7 +267,10 @@ public class RequestEndpoint {
         //invoke MessagingEndpoint to send notification
         try {
             MessagingEndpoint messagingEndpoint = new MessagingEndpoint();
-            messagingEndpoint.sendMessage("test");
+            //Message to be sent should be read from the Request object
+            String email = request.getAcceptor();
+            String content = request.getStatus().toString();
+            messagingEndpoint.sendMessage("test","123@test.com");
         }catch (Exception e){
             e.printStackTrace();
         }
