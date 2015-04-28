@@ -58,7 +58,6 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
         mHandler = new Handler();
         listview.setXListViewListener(this);
         listview.setPullLoadEnable(true);
-        Log.d("111bin","main");
         new RequestsRetrievalAsyncTask(this).execute(Double.valueOf(gps.getLatitude()), Double.valueOf(gps.getLongitude()));
 
     }

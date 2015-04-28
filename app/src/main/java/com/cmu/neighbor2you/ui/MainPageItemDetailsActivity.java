@@ -14,6 +14,7 @@ import com.cmu.backend.requestEndpoint.RequestEndpoint;
 import com.cmu.backend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
+import com.cmu.neighbor2you.util.TimestampUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
@@ -103,7 +104,8 @@ public class MainPageItemDetailsActivity extends BaseActivity {
                 price.setText(String.valueOf(request.getItemPrice()));
                 address.setText(request.getAddress());
                 phone.setText(request.getPhoneNumber());
-                deadline.setText(new Date(request.getDeadline()).toString());
+
+                deadline.setText(TimestampUtil.convert(new Date(request.getDeadline())));
                 poster.setText(request.getRequester());
             }
         }
@@ -122,7 +124,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-4.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
