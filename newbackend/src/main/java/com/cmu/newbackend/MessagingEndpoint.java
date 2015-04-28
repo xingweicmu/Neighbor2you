@@ -45,7 +45,7 @@ public class MessagingEndpoint {
      *
      * @param message The message to send
      */
-    public void sendMessage(@Named("message") String message) throws IOException {
+    public void sendMessage(@Named("message") String message, @Named("email") String email) throws IOException {
         if (message == null || message.trim().length() == 0) {
             log.warning("Not sending message because it is empty");
             return;
@@ -56,7 +56,8 @@ public class MessagingEndpoint {
         }
         Sender sender = new Sender(API_KEY);
         Message msg = new Message.Builder().addData("message", message).build();
-        List<RegistrationRecord> records = ofy().load().type(RegistrationRecord.class).limit(10).list();
+//        List<RegistrationRecord> records = ofy().load().type(RegistrationRecord.class).limit(10).list();
+        List<RegistrationRecord> records = ofy().load().type(RegistrationRecord.class).limit(10).filter("email",email).list();
         for (RegistrationRecord record : records) {
             Result result = sender.send(msg, record.getRegId(), 5);
             if (result.getMessageId() != null) {

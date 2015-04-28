@@ -28,9 +28,9 @@ public class Request implements Serializable, Comparable<Request>{
     private long deadline;
     private boolean invalid;
     private String url;
-    public enum Status { STARTED, ONTHEWAY, ARRIVED };
+    public enum Status { WAITING, STARTED, ONTHEWAY, ARRIVED };
     @Index
-    private Status status;
+    private Status status = Status.WAITING;
     private double distance;
     private String address;
     private String phoneNumber;
