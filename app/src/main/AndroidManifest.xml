@@ -42,45 +42,45 @@
         <activity android:name=".ui.RegisterActivity" />
         <activity
             android:name=".ui.MainPageActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+            android:theme="@style/CustomActionBarTheme" />
         <activity
             android:name=".ui.PostRequestActivity"
             android:label="Post request"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.BaseActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.PostedRequestActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.AcceptedRequestActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.ProfileActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.TrackOrderActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.MainPageItemDetailsActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name=".ui.AcceptedRequestItemDetailActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
             android:name="jim.h.common.android.zxinglib.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:theme="@style/CustomActionBarTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <meta-data
