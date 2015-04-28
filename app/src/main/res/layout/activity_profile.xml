@@ -92,16 +92,12 @@
 
         </LinearLayout>
         <Button
-            android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
+            style="@style/button_style"
 
             android:text="@string/update"
 
 
-            android:layout_height="48dp" />
+            />
     </LinearLayout>
 
 </ScrollView>

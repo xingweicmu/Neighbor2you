@@ -61,12 +61,14 @@ public class LoginActivity extends ActionBarActivity {
             User user = new User();
             user.setEmail(emailS);
             user.setPassword(passwordS1);
+            new GcmRegistrationAsyncTask(this).execute();
             new LoginAsyncTask(this).execute(user);
         } else {
             Toast.makeText(this, "Email is malformed!", Toast.LENGTH_LONG).show();
         }
 
     }
+
 
     public void gotoRegister(View v) {
         startActivity(new Intent(this, RegisterActivity.class));
@@ -97,7 +99,7 @@ public class LoginActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                            .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
+                            .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

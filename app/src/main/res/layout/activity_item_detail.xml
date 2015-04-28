@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDF8FA"
+        android:background="@color/bg_blue"
         android:orientation="vertical"
         >
 
@@ -211,13 +211,7 @@
 
         <Button
             android:layout_below="@+id/p_table"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_height="48dp"
+            style="@style/button_style"
             android:text="Accept"
             android:id="@+id/accept"
             android:layout_gravity="right"

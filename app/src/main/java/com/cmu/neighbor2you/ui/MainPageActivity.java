@@ -58,7 +58,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
         mHandler = new Handler();
         listview.setXListViewListener(this);
         listview.setPullLoadEnable(true);
-
+        Log.d("111bin","main");
         new RequestsRetrievalAsyncTask(this).execute(Double.valueOf(gps.getLatitude()), Double.valueOf(gps.getLongitude()));
 
     }
@@ -77,7 +77,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-3.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-7.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
@@ -91,12 +91,20 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
 
         @Override
         public void onPostExecute(CollectionResponseRequest reqList) {
+            Log.d("main1","111");
             if (reqList != null) {
                 list = reqList.getItems();
+                Log.d("main2","111");
                 if (list != null && !list.isEmpty()) {
+                    Log.d("main3","main");
                     adapter = new MainPageListViewAdapter(MainPageActivity.this, list);
                     listview.setAdapter(adapter);
+                } else {
+                    Log.d("main4","main");
                 }
+            }
+            if(reqList == null) {
+                Log.d("main5","111");
             }
         }
     }
