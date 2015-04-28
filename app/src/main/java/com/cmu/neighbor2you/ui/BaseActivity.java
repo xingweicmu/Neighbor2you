@@ -51,10 +51,10 @@ public class BaseActivity extends Activity {
         mPlanetTitles = getResources().getStringArray(R.array.menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
+        mDrawerList.setBackgroundColor(getResources().getColor(R.color.drawer_bg));
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        //mDrawerLayout.setStatusBarBackgroundColor(R.drawable.drawer_blue);
+
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, mPlanetTitles));
