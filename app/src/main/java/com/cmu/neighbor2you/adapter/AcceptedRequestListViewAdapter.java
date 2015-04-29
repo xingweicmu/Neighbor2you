@@ -14,8 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cmu.backend.requestEndpoint.RequestEndpoint;
-import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.backend.requestEndpoint.RequestEndpoint;
+//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 import com.google.api.client.extensions.android.http.AndroidHttp;

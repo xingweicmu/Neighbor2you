@@ -13,8 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cmu.backend.userEndpoint.UserEndpoint;
-import com.cmu.backend.userEndpoint.model.User;
+//import com.cmu.backend.userEndpoint.UserEndpoint;
+//import com.cmu.backend.userEndpoint.model.User;
+import com.cmu.newbackend.userEndpoint.model.User;
+import com.cmu.newbackend.userEndpoint.UserEndpoint;
 import com.cmu.neighbor2you.R;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -125,7 +127,7 @@ public class RegisterActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

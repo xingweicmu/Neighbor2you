@@ -5,8 +5,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.cmu.backend.requestEndpoint.RequestEndpoint;
-import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.backend.requestEndpoint.RequestEndpoint;
+//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -44,7 +46,7 @@ public class TrackOrderActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

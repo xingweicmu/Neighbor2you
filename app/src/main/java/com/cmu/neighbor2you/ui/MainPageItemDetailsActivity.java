@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cmu.backend.requestEndpoint.RequestEndpoint;
-import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.backend.requestEndpoint.RequestEndpoint;
+//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 import com.cmu.neighbor2you.util.TimestampUtil;
@@ -83,7 +85,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
@@ -125,7 +127,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
