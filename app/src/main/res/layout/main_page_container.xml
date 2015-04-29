@@ -21,5 +21,14 @@
             android:listSelector="@drawable/list_selector" />
 
     </LinearLayout>
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginRight="28dp"
+        android:id="@+id/posted_request_button"
+        android:background="@drawable/button_ring"/>
 
 </RelativeLayout>

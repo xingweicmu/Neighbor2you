@@ -12,14 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_blue">
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="28dp"
-            android:layout_marginRight="28dp"
-            android:id="@+id/posted_request_button"
-            android:background="@drawable/button_ring"/>
+
         </FrameLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
