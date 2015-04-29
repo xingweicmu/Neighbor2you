@@ -16,7 +16,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="bottom|right"
-            android:elevation="5dp"
             android:layout_marginBottom="28dp"
             android:layout_marginRight="28dp"
             android:id="@+id/posted_request_button"

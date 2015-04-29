@@ -178,6 +178,7 @@
             android:layout_below="@+id/p_table"
             style="@style/button_style"
             android:text="Make a Phone Call"
+            android:elevation="6dp"
             android:id="@+id/accept"
             android:layout_gravity="right" />
 
