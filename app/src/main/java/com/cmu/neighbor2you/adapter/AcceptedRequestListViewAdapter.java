@@ -109,7 +109,7 @@ public class AcceptedRequestListViewAdapter extends BaseAdapter {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
