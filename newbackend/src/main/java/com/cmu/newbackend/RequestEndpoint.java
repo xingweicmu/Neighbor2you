@@ -270,7 +270,7 @@ public class RequestEndpoint {
             //Message to be sent should be read from the Request object
             String email = request.getAcceptor();
             String content = request.getStatus().toString();
-            messagingEndpoint.sendMessage("test","123@test.com");
+            messagingEndpoint.sendMessage(content,email);
         }catch (Exception e){
             e.printStackTrace();
         }

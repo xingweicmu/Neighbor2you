@@ -67,7 +67,6 @@ public class BaseActivity extends Activity {
         navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[2]));
         navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[3]));
         navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[4]));
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[5]));
         // set up the drawer's list view with items and click listener
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
@@ -190,11 +189,6 @@ public class BaseActivity extends Activity {
             case 4:
                 Intent intent3 = new Intent(this, ProfileActivity.class);
                 startActivity(intent3);
-                finish();
-                break;
-            case 5:
-                Intent intent4 = new Intent(this, TrackOrderActivity.class);
-                startActivity(intent4);
                 finish();
                 break;
             default:

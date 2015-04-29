@@ -61,7 +61,6 @@ public class LoginActivity extends ActionBarActivity {
             User user = new User();
             user.setEmail(emailS);
             user.setPassword(passwordS1);
-            new GcmRegistrationAsyncTask(this).execute();
             new LoginAsyncTask(this).execute(user);
         } else {
             Toast.makeText(this, "Email is malformed!", Toast.LENGTH_LONG).show();
