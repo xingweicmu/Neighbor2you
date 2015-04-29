@@ -6,7 +6,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_purple"
+    android:background="@color/actionbar_blue"
     android:orientation="vertical" >
     <ImageView
         android:id="@+id/image_logo"
@@ -36,8 +36,8 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:background="#00ffffff"
-            android:textColorHint="@android:color/holo_blue_dark"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:hint="@string/email"
             android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"/>
@@ -50,8 +50,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="#00ffffff"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHint="@android:color/holo_blue_dark"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="@string/Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
@@ -61,8 +61,8 @@
     <Button
         android:id="@+id/btn_login"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:textColor="@android:color/holo_blue_dark"
+        android:layout_height="48dp"
+        android:textColor="@color/white"
         android:background="@drawable/unbound"
         android:layout_below="@id/linearLayout01"
         android:layout_marginTop="22dp"
@@ -72,8 +72,8 @@
     <Button
         android:id="@+id/btn_register"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:textColor="@android:color/holo_blue_dark"
+        android:layout_height="48dp"
+        android:textColor="@color/white"
         android:background="@drawable/unbound"
         android:layout_below="@id/linearLayout01"
         android:layout_marginTop="10dp"
