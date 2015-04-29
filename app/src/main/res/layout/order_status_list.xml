@@ -1,6 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item1"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:elevation="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal">
+
+<ImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:id="@+id/status_icon"
+    android:src="@drawable/waiting"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/status"
+    android:layout_toRightOf="@+id/status_icon"
+    android:text="Not Start"
+    android:layout_marginLeft="5dp"
+    android:layout_centerInParent="true"
+    android:textSize="18sp"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/status_time"
+    android:layout_toRightOf="@+id/status"
+    android:layout_marginLeft="10dp"
+    android:layout_centerInParent="true"
+    android:textSize="16sp"
+    android:text="09:01"/>
+
+
+
+
+
+
+</RelativeLayout>
+
+
