@@ -13,8 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cmu.backend.userEndpoint.UserEndpoint;
-import com.cmu.backend.userEndpoint.model.User;
+//import com.cmu.backend.userEndpoint.UserEndpoint;
+//import com.cmu.backend.userEndpoint.model.User;
+import com.cmu.newbackend.userEndpoint.model.User;
+import com.cmu.newbackend.userEndpoint.UserEndpoint;
 import com.cmu.neighbor2you.R;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -28,7 +30,7 @@ import java.io.IOException;
  */
 public class RegisterActivity extends ActionBarActivity {
 
-    private EditText username, password, password2, email, phone;
+    private EditText username, password, password2, email, phone, address;
     private String message;
     private boolean isRegisteredSuccessed = false;
 
@@ -36,30 +38,30 @@ public class RegisterActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-//        username = (EditText) findViewById(R.id.et_res_username);
+        username = (EditText) findViewById(R.id.et_res_username);
         password = (EditText) findViewById(R.id.et_res_Pwd);
         password2 = (EditText) findViewById(R.id.et_res_conPwd);
         email = (EditText) findViewById(R.id.et_res_email);
-//        address = (EditText) findViewById(R.id.editText5);
+        address = (EditText) findViewById(R.id.et_res_address);
         phone = (EditText) findViewById(R.id.et_res_phone);
 
     }
 
     public void register(View v) {
 
-//        String usernameS = username.getText().toString();
+        String usernameS = username.getText().toString();
         String passwordS1 = password.getText().toString();
         String passwordS2 = password2.getText().toString();
         String emailS = email.getText().toString();
-//        String addrS = address.getText().toString();
+        String addrS = address.getText().toString();
         String phoneS = phone.getText().toString();
 
         if (isValid(passwordS1, passwordS2, emailS, phoneS)) {
             User user = new User();
-//            user.setUserName(usernameS);
+            user.setUserName(usernameS);
             user.setPassword(passwordS1);
             user.setEmail(emailS);
-//            user.setAddress(addrS);
+            user.setAddress(addrS);
             user.setPhoneNumber(phoneS);
             new GcmRegistrationAsyncTask(this,emailS).execute();
             new RegisterAsyncTask(this).execute(user);
@@ -125,7 +127,7 @@ public class RegisterActivity extends ActionBarActivity {
 //                        });
                 // end options for devappserver
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 

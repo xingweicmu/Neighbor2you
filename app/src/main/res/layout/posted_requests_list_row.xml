@@ -55,26 +55,26 @@
 
     <!--android:textColor="@color/background_floating_material_dark"-->
     <!--/>-->
-    <!--<ImageView-->
-    <!--android:layout_width="50dp"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_marginRight="20dp"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_centerInParent="true"-->
-    <!--android:id="@+id/edit_posted_status"-->
-    <!--android:src="@drawable/waiting"-->
-    <!--/>-->
+    <ImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginRight="20dp"
+    android:layout_alignParentRight="true"
+    android:layout_centerInParent="true"
+    android:id="@+id/edit_posted_status"
+    android:src="@drawable/waiting"
+    />
 
-    <TextView
-        android:id="@+id/edit_posted_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="5dp"
-        android:text="On the way"
-        android:textColor="@color/text_grey"
-        android:textSize="22sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/edit_posted_status"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:text="On the way"-->
+        <!--android:textColor="@color/text_grey"-->
+        <!--android:textSize="22sp" />-->
 
 
 </RelativeLayout>
