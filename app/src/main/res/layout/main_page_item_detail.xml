@@ -206,6 +206,7 @@
         <Button
             android:layout_below="@+id/p_table"
             style="@style/button_style"
+            android:elevation="6dp"
             android:text="Accept"
             android:id="@+id/accept"
             android:layout_gravity="right"

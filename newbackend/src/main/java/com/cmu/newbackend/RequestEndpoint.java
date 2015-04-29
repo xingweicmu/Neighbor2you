@@ -268,8 +268,9 @@ public class RequestEndpoint {
         try {
             MessagingEndpoint messagingEndpoint = new MessagingEndpoint();
             //Message to be sent should be read from the Request object
-            String email = request.getAcceptor();
+            String email = request.getRequester();
             String content = request.getStatus().toString();
+            System.out.println(email+content);
             messagingEndpoint.sendMessage(content,email);
         }catch (Exception e){
             e.printStackTrace();
