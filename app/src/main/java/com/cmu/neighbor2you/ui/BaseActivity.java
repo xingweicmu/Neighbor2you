@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +23,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.adapter.NavDrawerItem;
+import com.cmu.neighbor2you.adapter.NavDrawerListAdapter;
+
+import java.util.ArrayList;
 
 
 public class BaseActivity extends Activity {
@@ -32,10 +37,12 @@ public class BaseActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mPlanetTitles;
-
+    private TypedArray navMenuIcons;
 
     protected DrawerLayout fullLayout;
     protected FrameLayout frameLayout;
+    private ArrayList<NavDrawerItem> navDrawerItems;
+    private NavDrawerListAdapter adapter;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -49,15 +56,25 @@ public class BaseActivity extends Activity {
 
         mTitle = mDrawerTitle = getTitle();
         mPlanetTitles = getResources().getStringArray(R.array.menu);
+//        navMenuIcons = getResources().obtainTypedArray(R.array.array_main_menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
+        mDrawerList.setBackgroundColor(getResources().getColor(R.color.drawer_bg));
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        //mDrawerLayout.setStatusBarBackgroundColor(R.drawable.drawer_blue);
+        navDrawerItems = new ArrayList<NavDrawerItem>();
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[0]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[1]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[2]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[3]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[4]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[5]));
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+        adapter = new NavDrawerListAdapter(getApplicationContext(),
+                navDrawerItems);
+//        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+//                R.layout.drawer_list_item, mPlanetTitles));
+        mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
