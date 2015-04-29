@@ -22,23 +22,35 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_height="240dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:gravity="center"
                         android:textSize="40sp"
                         android:textStyle="bold"
+                        android:id="@+id/profile_name"
                         android:background="#00ffffff"
                         android:text="Dave"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="170dp"
+
+                    <com.cmu.neighbor2you.ui.SelectableRoundedImageView
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/image"
+                        android:layout_below="@+id/profile_name"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerCrop"
+                        app:sriv_left_top_corner_radius="16dip"
+                        app:sriv_right_top_corner_radius="0dip"
+                        app:sriv_left_bottom_corner_radius="48dip"
+                        app:sriv_right_bottom_corner_radius="16dip"
+                        app:sriv_border_width="2dip"
+                        app:sriv_border_color="#008fea"
+                        app:sriv_oval="true"
+
+
                         android:src="@drawable/default_photo"/>
-                    </LinearLayout>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
