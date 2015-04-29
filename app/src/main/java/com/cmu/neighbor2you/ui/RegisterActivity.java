@@ -30,6 +30,7 @@ public class RegisterActivity extends ActionBarActivity {
 
     private EditText username, password, password2, email, phone;
     private String message;
+    private boolean isRegisteredSuccessed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class RegisterActivity extends ActionBarActivity {
 //            user.setAddress(addrS);
             user.setPhoneNumber(phoneS);
             new RegisterAsyncTask(this).execute(user);
+            if(isRegisteredSuccessed)
+                new GcmRegistrationAsyncTask(this,emailS).execute();
         }
 
     }
@@ -157,6 +160,7 @@ public class RegisterActivity extends ActionBarActivity {
                 editor.putString(LoginActivity.name, u);
                 editor.putString(LoginActivity.pass, p);
                 editor.commit();
+                isRegisteredSuccessed = true;
                 Intent it = new Intent();
                 it.setClass(RegisterActivity.this, MainPageActivity.class);
                 startActivity(it);

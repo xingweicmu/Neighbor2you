@@ -88,7 +88,6 @@
             android:name="jim.h.common.android.zxinglib.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
-            android:theme="@style/CustomActionBarTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <meta-data

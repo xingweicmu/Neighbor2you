@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -69,6 +68,7 @@ public class BaseActivity extends Activity {
         navDrawerItems.add(new NavDrawerItem(R.drawable.accept_icon, mPlanetTitles[3]));
         navDrawerItems.add(new NavDrawerItem(R.drawable.profile_icon, mPlanetTitles[4]));
         //navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[5]));
+
         // set up the drawer's list view with items and click listener
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
@@ -193,11 +193,6 @@ public class BaseActivity extends Activity {
                 startActivity(intent3);
                 finish();
                 break;
-            case 5:
-                Intent intent4 = new Intent(this, TrackOrderActivity.class);
-                startActivity(intent4);
-                finish();
-                break;
             default:
                 break;
         }
@@ -219,7 +214,7 @@ public class BaseActivity extends Activity {
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+       super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
