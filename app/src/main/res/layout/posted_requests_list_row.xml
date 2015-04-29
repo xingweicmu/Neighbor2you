@@ -1,17 +1,19 @@
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/posted_list"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
-    android:padding="5dip"
     android:background="@color/white"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="5dip">
 
-    <LinearLayout android:id="@+id/posted_thumbnail"
+    <LinearLayout
+        android:id="@+id/posted_thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:background="@color/white"
-        android:layout_marginRight="5dip">
+        android:layout_marginRight="5dip"
+        android:background="@color/white">
+
         <ImageView
             android:id="@+id/posted_list_image"
             android:layout_width="50dp"
@@ -23,48 +25,55 @@
 
 
     <TextView
+        android:id="@+id/posted_title"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:layout_marginLeft="9dp"
         android:layout_toRightOf="@+id/posted_thumbnail"
         android:ellipsize="end"
-
-        android:singleLine="true"
         android:marqueeRepeatLimit="marquee_forever"
-        android:layout_marginLeft="9dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/posted_title"
+        android:singleLine="true"
         android:text="Sunflower Oil"
-        android:textSize="22sp"
-        android:textStyle="bold"
         android:textColor="@color/background_floating_material_dark"
-        />
+        android:textSize="22sp"
+        android:textStyle="bold" />
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_toLeftOf="@+id/edit_posted_status"-->
-        <!--android:ellipsize="end"-->
-        <!--android:singleLine="true"-->
-        <!--android:marqueeRepeatLimit="marquee_forever"-->
-        <!--android:layout_marginRight="9dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:id="@+id/posted_status"-->
-        <!--android:text="Status"-->
-        <!--android:textSize="22sp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toLeftOf="@+id/edit_posted_status"-->
+    <!--android:ellipsize="end"-->
+    <!--android:singleLine="true"-->
+    <!--android:marqueeRepeatLimit="marquee_forever"-->
+    <!--android:layout_marginRight="9dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:id="@+id/posted_status"-->
+    <!--android:text="Status"-->
+    <!--android:textSize="22sp"-->
 
-        <!--android:textColor="@color/background_floating_material_dark"-->
-        <!--/>-->
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="20dp"
+    <!--android:textColor="@color/background_floating_material_dark"-->
+    <!--/>-->
+    <!--<ImageView-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_marginRight="20dp"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:id="@+id/edit_posted_status"-->
+    <!--android:src="@drawable/waiting"-->
+    <!--/>-->
+
+    <TextView
+        android:id="@+id/edit_posted_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:id="@+id/edit_posted_status"
-        android:src="@drawable/waiting"
-       />
-
-
-
+        android:layout_marginRight="5dp"
+        android:text="On the way"
+        android:textColor="@color/text_grey"
+        android:textSize="22sp" />
 
 
 </RelativeLayout>
