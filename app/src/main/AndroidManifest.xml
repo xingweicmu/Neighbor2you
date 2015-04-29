@@ -42,10 +42,11 @@
         <activity android:name=".ui.RegisterActivity" />
         <activity
             android:name=".ui.MainPageActivity"
+            android:label="Neighbor2you"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity
             android:name=".ui.PostRequestActivity"
-            android:label="Post request"
+            android:label="Post Request"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
@@ -54,26 +55,32 @@
         </activity>
         <activity
             android:name=".ui.PostedRequestActivity"
+            android:label="Posted Request"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.AcceptedRequestActivity"
+            android:label="Accepted Request"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.ProfileActivity"
+            android:label="Profile"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.TrackOrderActivity"
+            android:label="Track Order"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.MainPageItemDetailsActivity"
+            android:label="Item Detail"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
             android:name=".ui.AcceptedRequestItemDetailActivity"
+            android:label="Item Detail"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
         </activity>
         <activity
