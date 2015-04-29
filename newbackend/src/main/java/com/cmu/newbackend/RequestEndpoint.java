@@ -23,7 +23,7 @@ import static com.cmu.newbackend.OfyService.ofy;
  */
 
 //@Api(name = "requestEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.cmu.com", ownerName = "backend.cmu.com", packagePath=""))
-@Api(name = "request", version = "v1", namespace = @ApiNamespace(ownerDomain = "newbackend.cmu.com", ownerName = "newbackend.cmu.com", packagePath = ""))
+@Api(name = "requestEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "newbackend.cmu.com", ownerName = "newbackend.cmu.com", packagePath = ""))
 
 public class RequestEndpoint {
 

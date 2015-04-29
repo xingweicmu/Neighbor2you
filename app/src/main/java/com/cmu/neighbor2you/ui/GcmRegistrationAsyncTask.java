@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.cmu.newbackend.registration.Registration;
+//import com.cmu.newbackend.registrationEndpoint.Registration;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -36,7 +37,7 @@ class GcmRegistrationAsyncTask extends AsyncTask<Void, Void, String> {
         if (regService == null) {
             Registration.Builder builder = new Registration.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://n2y-ci-9.appspot.com/_ah/api/"); // For CI
+                    .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/"); // For CI
                     // Need setRootUrl and setGoogleClientRequestInitializer only for local testing,
                     // otherwise they can be skipped
 //                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")

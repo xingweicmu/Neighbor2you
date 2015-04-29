@@ -22,7 +22,7 @@ import static com.cmu.newbackend.OfyService.ofy;
  * Created by xing on 3/29/15.
  */
 //@Api(name = "userEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.cmu.com", ownerName = "backend.cmu.com", packagePath=""))
-@Api(name = "user", version = "v1", namespace = @ApiNamespace(ownerDomain = "newbackend.cmu.com", ownerName = "newbackend.cmu.com", packagePath=""))
+@Api(name = "userEndpoint", version = "v1", namespace = @ApiNamespace(ownerDomain = "newbackend.cmu.com", ownerName = "newbackend.cmu.com", packagePath=""))
 public class UserEndpoint {
     public UserEndpoint(){
     }

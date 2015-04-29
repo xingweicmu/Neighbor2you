@@ -9,7 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.newbackend.request.model.Request;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 

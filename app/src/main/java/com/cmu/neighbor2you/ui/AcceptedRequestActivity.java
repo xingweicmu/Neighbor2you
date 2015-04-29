@@ -10,9 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.cmu.backend.requestEndpoint.RequestEndpoint;
-import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
-import com.cmu.backend.requestEndpoint.model.Request;
+//import com.cmu.backend.requestEndpoint.RequestEndpoint;
+//import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
+//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.CollectionResponseRequest;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.adapter.AcceptedRequestListViewAdapter;
 import com.cmu.neighbor2you.view.XListView;
@@ -72,7 +75,7 @@ public class AcceptedRequestActivity extends BaseActivity implements XListView.I
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-8.appspot.com/_ah/api/");
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
                 myApiService = builder.build();
             }
 
