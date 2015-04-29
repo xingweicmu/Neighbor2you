@@ -83,12 +83,14 @@
             android:layout_height="48dp"
             android:text="Make a Phone Call"
             style="@style/button_style"
-            android:id="@+id/phone_call"/>
+            android:id="@+id/phone_call"
+            android:elevation="6dp"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:text="Received"
             style="@style/button_style"
+            android:elevation="6dp"
             android:id="@+id/receive_but"/>
     </LinearLayout>
 

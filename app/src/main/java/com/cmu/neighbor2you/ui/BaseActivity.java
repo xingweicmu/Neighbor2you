@@ -62,11 +62,13 @@ public class BaseActivity extends Activity {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         navDrawerItems = new ArrayList<NavDrawerItem>();
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[0]));
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[1]));
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[2]));
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[3]));
-        navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[4]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.home_icon, mPlanetTitles[0]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.post_icon, mPlanetTitles[1]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.request_icon, mPlanetTitles[2]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.accept_icon, mPlanetTitles[3]));
+        navDrawerItems.add(new NavDrawerItem(R.drawable.profile_icon, mPlanetTitles[4]));
+        //navDrawerItems.add(new NavDrawerItem(R.drawable.d_home, mPlanetTitles[5]));
+
         // set up the drawer's list view with items and click listener
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
