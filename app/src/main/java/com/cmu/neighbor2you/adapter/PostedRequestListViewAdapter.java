@@ -54,7 +54,6 @@ public class PostedRequestListViewAdapter extends BaseAdapter {
         Request item = data.get(position);
 
         // Setting all values in listview
-
         title.setText(item.getItemName());
         status.setText(item.getStatus());
         imageLoader.DisplayImage(item.getUrl(), thumb_image);

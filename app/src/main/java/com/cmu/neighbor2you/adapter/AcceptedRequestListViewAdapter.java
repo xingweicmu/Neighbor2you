@@ -80,8 +80,10 @@ public class AcceptedRequestListViewAdapter extends BaseAdapter {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String newStatus = parent.getItemAtPosition(position).toString();
                 Log.d("spinner item", newStatus);
-                item.setStatus(newStatus);
-                new UpdateRequestAsyncTask(activity).execute(item);
+                if(!item.getStatus().equals(newStatus)) {
+                    item.setStatus(newStatus);
+                    new UpdateRequestAsyncTask(activity).execute(item);
+                }
             }
 
             @Override
