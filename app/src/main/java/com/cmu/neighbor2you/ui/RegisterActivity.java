@@ -61,9 +61,10 @@ public class RegisterActivity extends ActionBarActivity {
             user.setEmail(emailS);
 //            user.setAddress(addrS);
             user.setPhoneNumber(phoneS);
+            new GcmRegistrationAsyncTask(this,emailS).execute();
             new RegisterAsyncTask(this).execute(user);
-            if(isRegisteredSuccessed)
-                new GcmRegistrationAsyncTask(this,emailS).execute();
+//            if(isRegisteredSuccessed)
+
         }
 
     }
