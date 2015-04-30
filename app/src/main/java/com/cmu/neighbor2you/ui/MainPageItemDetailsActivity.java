@@ -1,10 +1,12 @@
 package com.cmu.neighbor2you.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
     private TextView poster;
     private ImageView image;
     private Request req;
+    private ProgressDialog pDialog;
 
 
     @Override
@@ -49,7 +52,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         phone = (TextView)findViewById(R.id.main_phone);
         deadline = (TextView)findViewById(R.id.main_due);
         poster = (TextView)findViewById(R.id.main_needer);
-        image = (ImageView)findViewById(R.id.main_image);
+        image = (ImageView)findViewById(R.id.ac_image);
 
         long id = getIntent().getLongExtra("id",0);
         new GetRequestDetailsAsyncTask(this).execute(id);
@@ -81,6 +84,16 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(MainPageItemDetailsActivity.this);
+            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading product Detail..."));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
         public Request doInBackground(Long... params) {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
@@ -99,6 +112,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
 
         @Override
         public void onPostExecute(Request request) {
+            pDialog.dismiss();
             if (request != null) {
                 req = request;
                 ImageLoader loader = new ImageLoader(this.context);

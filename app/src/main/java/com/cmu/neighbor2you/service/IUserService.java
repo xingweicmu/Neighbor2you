@@ -1,7 +1,6 @@
 package com.cmu.neighbor2you.service;
 
-import com.cmu.neighbor2you.model.User;
-
+import com.cmu.newbackend.userEndpoint.model.User;
 import java.util.List;
 
 /**

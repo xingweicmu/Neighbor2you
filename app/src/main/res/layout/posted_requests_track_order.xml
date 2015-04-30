@@ -96,7 +96,8 @@
             android:layout_below="@id/status_list"
             style="@style/button_style"
             android:id="@+id/phone_call"
-            android:elevation="6dp"/>
+            android:elevation="6dp"
+            android:onClick="dial" />
         <Button
             android:layout_width="fill_parent"
             android:layout_height="48dp"
@@ -104,6 +105,8 @@
             android:text="Received"
             style="@style/button_style"
             android:elevation="6dp"
+            android:onClick="itemReceived"
+
             android:id="@+id/receive_but"/>
     </RelativeLayout>
 

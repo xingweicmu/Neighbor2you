@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+h1 {
+    border-bottom: 3px solid #cc9900;
+    color: #996600;
+    font-size: 30px;
+}
+table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Requests</h1>
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+// var url = "http://www.w3schools.com/website/Customers_MYSQL.php";
+var url = "https://n2y-ci-new.appspot.com/_ah/api/requestEndpoint/v1/request";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    // var arr = JSON.parse(response);
+    var i;
+    var out = "<table><tr><th>Id</th><th>Requester</th><th>Acceptor</th><th>Item Name</th><th>Status</th><th>Address</th></tr>";
+    // alert(arr.items[0].email);
+    for(i = 0; i < arr.items.length; i++) {
+        out += "<tr><td>" + 
+        arr.items[i].id +
+        "</td><td>" +
+        arr.items[i].requester +
+        "</td><td>" +
+        arr.items[i].acceptor +
+        "</td><td>"+
+        arr.items[i].itemName +
+        "</td><td>"+
+        arr.items[i].status +
+        "</td><td>"+
+        arr.items[i].address +
+        "</td></tr>";
+    }
+    out += "</table>"
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+<p/>
+<a href="users.html">>>Users</a> 
+</body>
+</html>
