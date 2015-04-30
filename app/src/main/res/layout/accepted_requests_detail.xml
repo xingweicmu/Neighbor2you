@@ -11,7 +11,7 @@
         >
 
         <ImageView
-            android:id="@+id/main_image"
+            android:id="@+id/ac_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginLeft="10dp"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/main_image"
+            android:layout_below="@+id/ac_image"
             android:layout_marginLeft="10dp"
             android:stretchColumns="1">
             <TableRow>
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/main_image"
+                    android:layout_below="@+id/ac_image"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     android:ellipsize="end"
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/main_image"
+                    android:layout_below="@+id/ac_image"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     android:ellipsize="end"
@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/main_image"
+                    android:layout_below="@+id/ac_image"
                     android:textColor="@android:color/darker_gray"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/main_image"
+                    android:layout_below="@+id/ac_image"
                     android:textColor="@android:color/darker_gray"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
@@ -165,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/main_image"
+                    android:layout_below="@+id/ac_image"
                     android:layout_toRightOf="@+id/itemName"
                     android:textSize="18sp"
                     android:ellipsize="end"
@@ -180,8 +180,9 @@
             style="@style/button_style"
             android:text="Make a Phone Call"
             android:elevation="6dp"
-            android:id="@+id/accept"
-            android:layout_gravity="right" />
+            android:id="@+id/accept_dial"
+            android:layout_gravity="right"
+            android:onClick="dial" />
 
 
     </RelativeLayout>

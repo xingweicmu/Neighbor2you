@@ -1,19 +1,27 @@
 package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
-//import com.cmu.backend.requestEndpoint.RequestEndpoint;
-//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.adapter.TrackOrderListViewAdapter;
+import com.cmu.neighbor2you.service.IRequestService;
+import com.cmu.neighbor2you.service.RequestService;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.Request;
-import com.cmu.neighbor2you.R;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Venno on 4/11/15.
@@ -21,6 +29,9 @@ import java.io.IOException;
 public class TrackOrderActivity extends BaseActivity {
 
     private TextView buyer;
+    private ListView listView;
+    private TrackOrderListViewAdapter adapter;
+    private Request req;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +39,21 @@ public class TrackOrderActivity extends BaseActivity {
         setContentView(R.layout.posted_requests_track_order);
 
         buyer = (TextView) findViewById(R.id.track_order_buyer);
+        listView = (ListView)findViewById(R.id.status_list);
 
         long id = getIntent().getLongExtra("id", 0);
         new GetRequestDetailsAsyncTask(this).execute(id);
+    }
+
+    public void itemReceived(View view) {
+        IRequestService requestService = new RequestService();
+        req.setStatus("ARRIVED");
+        requestService.updateRequest(req,this);
+    }
+
+    public void dial(View view) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "6504178096"));
+        startActivity(callIntent);
     }
 
     private class GetRequestDetailsAsyncTask extends AsyncTask<Long, Void, Request> {
@@ -61,6 +84,11 @@ public class TrackOrderActivity extends BaseActivity {
         @Override
         public void onPostExecute(Request request) {
             if (request != null) {
+                req = request;
+                List<Request> list = new ArrayList<Request>();
+                list.add(request);
+                adapter = new TrackOrderListViewAdapter(TrackOrderActivity.this, list);
+                listView.setAdapter(adapter);
                 buyer.setText(request.getAcceptor());
             }
         }

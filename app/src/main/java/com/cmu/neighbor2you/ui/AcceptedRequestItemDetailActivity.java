@@ -1,23 +1,27 @@
 package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.cmu.backend.requestEndpoint.RequestEndpoint;
-//import com.cmu.backend.requestEndpoint.model.Request;
-import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
-import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
 import com.cmu.neighbor2you.util.TimestampUtil;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
 import java.util.Date;
+
+//import com.cmu.backend.requestEndpoint.RequestEndpoint;
+//import com.cmu.backend.requestEndpoint.model.Request;
 
 /**
  * Created by mangobin on 15-4-28.
@@ -43,11 +47,16 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
         // phone = (TextView)findViewById(R.id.ac_phone);
         deadline = (TextView) findViewById(R.id.ac_due);
         poster = (TextView) findViewById(R.id.ac_needer);
-        image = (ImageView) findViewById(R.id.main_image);
+        image = (ImageView) findViewById(R.id.ac_image);
 
         long id = getIntent().getLongExtra("id", 0);
         new GetRequestDetailsAsyncTask(this).execute(id);
 
+    }
+
+    public void dial(View view) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"6504178096"));
+        startActivity(callIntent);
     }
 
     private class GetRequestDetailsAsyncTask extends AsyncTask<Long, Void, Request> {

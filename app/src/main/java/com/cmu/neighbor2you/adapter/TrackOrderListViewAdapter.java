@@ -9,28 +9,24 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.cmu.backend.requestEndpoint.model.Request;
-//import com.cmu.newbackend.request.model.Request;
-import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
-import com.cmu.neighbor2you.util.ImageLoader;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 
 import java.util.List;
 
 /**
- * Created by mangobin on 15-4-27.
+ * Created by mangobin on 15-4-29.
  */
-public class PostedRequestListViewAdapter extends BaseAdapter {
+public class TrackOrderListViewAdapter extends BaseAdapter {
+
     private Activity activity;
     private List<Request> data;
     private static LayoutInflater inflater=null;
-    public ImageLoader imageLoader;
 
-    public PostedRequestListViewAdapter(Activity a, List<Request> d) {
+    public TrackOrderListViewAdapter(Activity a, List<Request> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        imageLoader=new ImageLoader(activity.getApplicationContext());
     }
 
     public int getCount() {
@@ -48,28 +44,26 @@ public class PostedRequestListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.posted_requests_list_row, null);
+            vi = inflater.inflate(R.layout.order_status_list, null);
 
-        TextView title = (TextView)vi.findViewById(R.id.posted_title);
-        ImageView status = (ImageView)vi.findViewById(R.id.edit_posted_status);
-        ImageView thumb_image=(ImageView)vi.findViewById(R.id.posted_list_image);
+        TextView status = (TextView)vi.findViewById(R.id.order_status);
+        ImageView statusIcon = (ImageView)vi.findViewById(R.id.order_status_icon);
         Request item = data.get(position);
 
         // Setting all values in listview
 
-        title.setText(item.getItemName());
         String curStatus = item.getStatus();
+        status.setText(curStatus);
         if (curStatus.equals("STARTED")) {
-            status.setImageResource(R.drawable.start);
+            statusIcon.setImageResource(R.drawable.start);
         } else if (curStatus.equals("ONTHEWAY")) {
-            status.setImageResource(R.drawable.going);
+            statusIcon.setImageResource(R.drawable.going);
         } else if (curStatus.equals("ARRIVED")) {
-            status.setImageResource(R.drawable.arrive);
+            statusIcon.setImageResource(R.drawable.arrive);
         } else if (curStatus.equals("WAITING")) {
-            status.setImageResource(R.drawable.waiting);
+            statusIcon.setImageResource(R.drawable.waiting);
         }
 
-        imageLoader.DisplayImage(item.getUrl(), thumb_image);
         return vi;
     }
 }

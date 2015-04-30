@@ -1,11 +1,18 @@
 package com.cmu.neighbor2you.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
+import android.widget.Toast;
 
-import com.cmu.neighbor2you.model.Request;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -35,7 +42,9 @@ public class RequestService extends Service implements IRequestService {
     }
 
     @Override
-    public Request updateRequest(Request request) {
+    public Request updateRequest(Request request, Context context) {
+        new UpdateRequestAsyncTask(context).execute(request);
+
         return null;
     }
 
@@ -47,5 +56,39 @@ public class RequestService extends Service implements IRequestService {
     @Override
     public Request getRequestById() {
         return null;
+    }
+
+
+    private class UpdateRequestAsyncTask extends AsyncTask<Request, Void, Request> {
+        private RequestEndpoint myApiService = null;
+        private Context context;
+
+        public UpdateRequestAsyncTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public Request doInBackground(Request... params) {
+            if (myApiService == null) {
+                RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null)
+                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                myApiService = builder.build();
+            }
+
+            try {
+                return myApiService.updateRequest(params[0]).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        public void onPostExecute(Request request) {
+            if (request != null) {
+                Toast.makeText(context, "Updated success!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

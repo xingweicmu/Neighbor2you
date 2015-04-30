@@ -1,6 +1,9 @@
 package com.cmu.neighbor2you.service;
 
-import com.cmu.neighbor2you.model.Request;
+
+import android.content.Context;
+
+import com.cmu.newbackend.requestEndpoint.model.Request;
 
 import java.util.List;
 
@@ -10,7 +13,7 @@ import java.util.List;
 public interface IRequestService {
     public boolean insertRequest(Request request);
     public boolean deleteRequest(Request request);
-    public Request updateRequest(Request request);
+    public Request updateRequest(Request request, Context context);
     public List<Request> getRequest();
     public Request getRequestById();
 }

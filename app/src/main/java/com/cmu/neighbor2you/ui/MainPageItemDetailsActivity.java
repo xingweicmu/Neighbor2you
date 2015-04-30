@@ -49,7 +49,7 @@ public class MainPageItemDetailsActivity extends BaseActivity {
         phone = (TextView)findViewById(R.id.main_phone);
         deadline = (TextView)findViewById(R.id.main_due);
         poster = (TextView)findViewById(R.id.main_needer);
-        image = (ImageView)findViewById(R.id.main_image);
+        image = (ImageView)findViewById(R.id.ac_image);
 
         long id = getIntent().getLongExtra("id",0);
         new GetRequestDetailsAsyncTask(this).execute(id);
