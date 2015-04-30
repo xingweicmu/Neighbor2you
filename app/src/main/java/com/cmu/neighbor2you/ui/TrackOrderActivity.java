@@ -4,22 +4,14 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.adapter.TrackOrderListViewAdapter;
@@ -45,14 +37,13 @@ public class TrackOrderActivity extends BaseActivity {
     private TrackOrderListViewAdapter adapter;
     private Request req;
     private ProgressDialog pDialog;
-    private TextView txtRatingValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.posted_requests_track_order);
         buyer = (TextView) findViewById(R.id.track_order_buyer);
-        listView = (ListView)findViewById(R.id.status_list);
+        listView = (ListView) findViewById(R.id.status_list);
 
         long id = getIntent().getLongExtra("id", 0);
         new GetRequestDetailsAsyncTask(this).execute(id);
@@ -60,67 +51,30 @@ public class TrackOrderActivity extends BaseActivity {
     }
 
     public void itemReceived(View view) {
-        IRequestService requestService = new RequestService();
-        req.setStatus("ARRIVED");
-        requestService.updateRequest(req,this);
+
         final Dialog dialog = new Dialog(this);
 
         dialog.setContentView(R.layout.activity_rating);
 
         dialog.setTitle("Rating");
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-//        ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-//            public void onRatingChanged(RatingBar ratingBar, float rating,
-//                                        boolean fromUser) {
-//
-//                txtRatingValue.setText(String.valueOf(rating));
-//                dialog.dismiss();
-//
-//            }
-//        });
+        final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
 
+                buyer.setText(String.valueOf(ratingBar.getRating()));
+                dialog.dismiss();
 
+            }
+        });
 
         dialog.show();
+
+        IRequestService requestService = new RequestService();
+        req.setStatus("ARRIVED");
+        requestService.updateRequest(req,this);
     }
-//    public void addListenerOnRatingBar() {
-//
-//        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-//
-//
-//        //if rating value is changed,
-//        //display the current rating value in the result (textview) automatically
-//        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-//            public void onRatingChanged(RatingBar ratingBar, float rating,
-//                                        boolean fromUser) {
-//
-//                txtRatingValue.setText(String.valueOf(rating));
-//
-//            }
-//        });
-//    }
-//
-//    public void addListenerOnButton() {
-//
-//        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-//        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-//
-//        //if click on me, then display the current rating value.
-//        btnSubmit.setOnClickListener(new OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(MyAndroidAppActivity.this,
-//                        String.valueOf(ratingBar.getRating()),
-//                        Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//        });
-//
-//    }
-//}
+
     public void dial(View view) {
         Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "6504178096"));
         startActivity(callIntent);

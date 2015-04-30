@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 //import com.cmu.backend.requestEndpoint.RequestEndpoint;
 //import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.neighbor2you.service.IUserService;
+import com.cmu.neighbor2you.service.UserService;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
@@ -27,6 +29,7 @@ import com.cmu.neighbor2you.util.GPSTracker;
 import com.cmu.neighbor2you.util.ImageLoader;
 import com.cmu.neighbor2you.util.TimestampUtil;
 import com.cmu.neighbor2you.util.WalmartUtil;
+import com.cmu.newbackend.userEndpoint.model.User;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
@@ -54,6 +57,8 @@ public class PostRequestActivity extends BaseActivity {
     private GPSTracker gps;
     private Request request;
 
+    private String requesterName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,23 @@ public class PostRequestActivity extends BaseActivity {
         View btnScan = findViewById(R.id.posted_image);
         request = new Request();
 
+        SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs",
+                Context.MODE_PRIVATE);
+        try {
+            requesterName = sharedPrefs.getString("emailKey", "NUll");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            IUserService userService = new UserService();
+            User user = userService.findByName(requesterName);
+            address.setText(user.getAddress());
+            phone.setText(user.getPhoneNumber());
+        } catch (Exception e) {
+            Log.d("getusernameError",e.getMessage());
+        }
+
         // Scan button
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +100,8 @@ public class PostRequestActivity extends BaseActivity {
                         R.id.viewfinder_view, R.id.preview_view, true);
             }
         });
+
+
     }
 
     public void post(View view) {
@@ -89,15 +113,8 @@ public class PostRequestActivity extends BaseActivity {
         request.setAddress(address.getText().toString());
         request.setPhoneNumber(phone.getText().toString());
 
-        SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs",
-                Context.MODE_PRIVATE);
-        String requester = null;
-        try {
-            requester = sharedPrefs.getString("emailKey", "NUll");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        request.setRequester(requester);
+
+        request.setRequester(requesterName);
         request.setLatitude(gps.getLatitude());
         request.setLongitude(gps.getLongitude());
         Date date = TimestampUtil.convert(time.getText().toString());
