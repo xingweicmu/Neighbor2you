@@ -149,6 +149,27 @@ public class UserEndpoint {
         return ofy().load().type(User.class).id(email).now();
     }
 
+    @ApiMethod(name = "updateRatingScore")
+    public User updateRatingScore(@Named("email") String email,
+                                  @Named("ratingScore") double ratingScore) throws NotFoundException {
+        User user = findRecord(email);
+        if (user == null) {
+            throw new NotFoundException("User Record does not exist");
+        }
+
+        //Caculate new rating score
+        double lastScore = user.getRatingScore();
+        int num = user.getRatingCount();
+        double currentScore = (lastScore * num + ratingScore)/(num + 1);
+        user.setRatingScore(Math.ceil(currentScore*100)/100);
+        user.setRatingCount(num+1);
+
+        // Save user to datastore
+        ofy().save().entity(user).now();
+        return user;
+
+    }
+
     //Private method to retrieve a <code>User</code> record
     private User findRecord(String email) {
         return ofy().load().type(User.class).id(email).now();

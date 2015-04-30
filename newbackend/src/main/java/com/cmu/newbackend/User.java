@@ -18,6 +18,15 @@ public class User implements Serializable {
     private String phoneNumber;     //Optional when register
     private String location;        //Optional
     private double ratingScore;
+    private int ratingCount;
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+    }
 
     public double getRatingScore() {
         return ratingScore;
