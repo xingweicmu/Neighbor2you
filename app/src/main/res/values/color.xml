@@ -16,4 +16,5 @@
     <item name="text_grey" type="color">#737373</item>
     <item name="actionbar_blue" type="color">#75D1FF</item>
     <item name="drawer_bg" type="color">#69BCE6</item>
+    <item name="login_bg" type="color">#59ACFF</item>
 </resources>
