@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:background="@color/bg_blue"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -55,7 +55,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
-                        android:text="Buyer"
+                        android:text="Acceptor"
                         android:gravity="center"
                         android:textSize="18sp"
                         android:textStyle="italic"
@@ -69,9 +69,20 @@
             </LinearLayout>
 
         </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/item1"
+            android:id="@+id/order_name"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
 <ListView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_below="@+id/order_name"
     android:layout_marginTop="15dp"
     android:layout_marginRight="42dp"
     android:layout_marginLeft="42dp"
@@ -82,17 +93,19 @@
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:text="Make a Phone Call"
+            android:layout_below="@id/status_list"
             style="@style/button_style"
             android:id="@+id/phone_call"
             android:elevation="6dp"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="48dp"
+            android:layout_below="@id/phone_call"
             android:text="Received"
             style="@style/button_style"
             android:elevation="6dp"
             android:id="@+id/receive_but"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </ScrollView>
