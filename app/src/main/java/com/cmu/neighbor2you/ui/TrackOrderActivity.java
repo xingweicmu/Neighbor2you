@@ -1,10 +1,12 @@
 package com.cmu.neighbor2you.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class TrackOrderActivity extends BaseActivity {
     private ListView listView;
     private TrackOrderListViewAdapter adapter;
     private Request req;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,16 @@ public class TrackOrderActivity extends BaseActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(TrackOrderActivity.this);
+            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading product Detail..."));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
         public Request doInBackground(Long... params) {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
@@ -83,6 +96,7 @@ public class TrackOrderActivity extends BaseActivity {
 
         @Override
         public void onPostExecute(Request request) {
+            pDialog.dismiss();
             if (request != null) {
                 req = request;
                 List<Request> list = new ArrayList<Request>();

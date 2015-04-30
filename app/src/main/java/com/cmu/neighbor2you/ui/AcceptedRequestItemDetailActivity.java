@@ -1,10 +1,12 @@
 package com.cmu.neighbor2you.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
     private TextView poster;
     private ImageView image;
     private Request req;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
 
     }
 
-    public void dial(View view) {
+    public void dialRequester(View view) {
         Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"6504178096"));
         startActivity(callIntent);
     }
@@ -65,6 +68,16 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
 
         public GetRequestDetailsAsyncTask(Context context) {
             this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(AcceptedRequestItemDetailActivity.this);
+            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading product Detail..."));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
         }
 
         @Override
@@ -86,6 +99,7 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
 
         @Override
         public void onPostExecute(Request request) {
+            pDialog.dismiss();
             if (request != null) {
                 req = request;
                 ImageLoader loader = new ImageLoader(this.context);

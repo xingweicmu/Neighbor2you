@@ -182,7 +182,7 @@
             android:elevation="6dp"
             android:id="@+id/accept_dial"
             android:layout_gravity="right"
-            android:onClick="dial" />
+            android:onClick="dialRequester" />
 
 
     </RelativeLayout>
