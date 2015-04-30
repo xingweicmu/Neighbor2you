@@ -134,11 +134,25 @@ public class UserEndpoint {
         ofy().delete().entity(record).now();
     }
 
+    /**
+     * Get User by Email.
+     * @param email
+     * @return
+     * @throws NotFoundException
+     */
+    @ApiMethod(name = "getUserByEmail")
+    public User getUserByEmail(@Named("email") String email) throws NotFoundException {
+        User record = findRecord(email);
+        if (record == null) {
+            throw new NotFoundException("User Record does not exist");
+        }
+        return ofy().load().type(User.class).id(email).now();
+    }
+
     //Private method to retrieve a <code>User</code> record
     private User findRecord(String email) {
         return ofy().load().type(User.class).id(email).now();
 //or return ofy().load().type(Quote.class).filter("id",id).first.now();
     }
-
 
 }
