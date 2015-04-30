@@ -17,7 +17,17 @@ public class User implements Serializable {
     private String address;         //Optional when register
     private String phoneNumber;     //Optional when register
     private String location;        //Optional
-//    private boolean loggedIn;       //To indicate if the user is logged in
+    private double ratingScore;
+
+    public double getRatingScore() {
+        return ratingScore;
+    }
+
+    public void setRatingScore(double ratingScore) {
+        this.ratingScore = ratingScore;
+    }
+
+    //    private boolean loggedIn;       //To indicate if the user is logged in
 
     public User(){}
 
@@ -78,7 +88,7 @@ public class User implements Serializable {
     }
 
     public String toString(){
-        return "email: "+email+"\tuserName: "+userName+"\tpassword: "+password+"\taddress: "+address+"\tphoneNumber: "+phoneNumber+"\tlocation: "+location;
+        return "email: "+email+"\tuserName: "+userName+"\tpassword: "+password+"\taddress: "+address+"\tphoneNumber: "+phoneNumber+"\tlocation: "+location+"\trating: "+ratingScore;
     }
 
 }
