@@ -45,6 +45,7 @@ public class TrackOrderActivity extends BaseActivity {
 
         long id = getIntent().getLongExtra("id", 0);
         new GetRequestDetailsAsyncTask(this).execute(id);
+
     }
 
     public void itemReceived(View view) {
@@ -103,6 +104,7 @@ public class TrackOrderActivity extends BaseActivity {
                 adapter = new TrackOrderListViewAdapter(TrackOrderActivity.this, list);
                 listView.setAdapter(adapter);
                 buyer.setText(request.getAcceptor());
+                getActionBar().setTitle(req.getItemName());
             }
         }
     }
