@@ -36,6 +36,15 @@ public class Request implements Serializable, Comparable<Request>{
     private String phoneNumber;
     @Index
     private boolean accepted;
+    private boolean received;
+
+    public boolean isReceived() {
+        return received;
+    }
+
+    public void setReceived(boolean received) {
+        this.received = received;
+    }
 
     public boolean isAccepted() {
         return accepted;
@@ -176,7 +185,9 @@ public class Request implements Serializable, Comparable<Request>{
         return "id: " + id + "\trequester: " + requester + "\tacceptor: " + acceptor +
                 "\titemName: " + itemName + "\titemPrice: " + itemPrice + "\tlatitude: " +
                 latitude + "\tlongitude: " + longitude + "\tdeadline: " + deadline +
-                "\tinvalid: " + invalid + url + "\tstatus: " + status + "\tdistance: " + distance;
+                "\tinvalid: " + invalid + url + "\tstatus: " + status + "\tdistance: " +
+                distance + "\taddress: " + address + "\tphoneNumber: " + phoneNumber +
+                "\taccepted: " + accepted + "\treceived: " + received;
     }
 
     public int compareTo(Request request) {
