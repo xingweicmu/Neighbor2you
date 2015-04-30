@@ -40,7 +40,6 @@ public class TrackOrderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.posted_requests_track_order);
-
         buyer = (TextView) findViewById(R.id.track_order_buyer);
         listView = (ListView)findViewById(R.id.status_list);
 

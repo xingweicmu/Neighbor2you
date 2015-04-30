@@ -69,20 +69,10 @@
             </LinearLayout>
 
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@+id/item1"
-            android:id="@+id/order_name"
-            android:layout_marginTop="20dp"
-            android:text="Name"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"/>
 <ListView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/order_name"
+    android:layout_below="@+id/item1"
     android:layout_marginTop="15dp"
     android:layout_marginRight="42dp"
     android:layout_marginLeft="42dp"
