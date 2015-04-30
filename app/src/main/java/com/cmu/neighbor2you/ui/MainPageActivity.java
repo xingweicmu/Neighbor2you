@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 
 //import com.cmu.backend.requestEndpoint.RequestEndpoint;
 //import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
@@ -36,6 +37,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
 
     private Handler mHandler;
     private List<Request> list;
+    private Button postRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
         setContentView(R.layout.main_page_container);
         gps = new GPSTracker(this);
         gps.getLocation();
+        postRequest = (Button) findViewById(R.id.posted_request_button);
 
 
         listview = (XListView) findViewById(R.id.list);
@@ -55,6 +58,13 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
                 Intent it = new Intent(getApplicationContext(),MainPageItemDetailsActivity.class);
                 it.putExtra("id",list.get(position-1).getId());
                 startActivity(it);
+            }
+        });
+        postRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPageActivity.this, PostRequestActivity.class);
+                startActivity(intent);
             }
         });
 
