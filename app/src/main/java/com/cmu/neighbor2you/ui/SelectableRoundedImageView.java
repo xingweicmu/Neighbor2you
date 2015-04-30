@@ -368,7 +368,7 @@ public class SelectableRoundedImageView extends ImageView {
                 if (bm != null) {
                     return new SelectableRoundedCornerDrawable(bm, r);
                 } else {
-                    Log.w(TAG, "Failed to create bitmap from drawable!");
+//                    Log.w(TAG, "Failed to create bitmap from drawable!");
                 }
             }
             return drawable;

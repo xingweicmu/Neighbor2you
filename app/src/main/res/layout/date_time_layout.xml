@@ -28,6 +28,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/actionbar_blue"
             android:text="Cancel" />
 
         <Button
@@ -35,6 +36,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/actionbar_blue"
             android:text="Ok" />
     </LinearLayout>
 
