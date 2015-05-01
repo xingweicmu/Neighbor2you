@@ -85,7 +85,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:textSize="25sp"
-                    android:text="123456"/>
+                    android:text="123456"
+                    android:id="@+id/profile_phone" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,7 +111,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:textSize="25sp"
-                    android:text="280 Easy Street"/>
+                    android:text="280 Easy Street"
+                    android:id="@+id/profile_addr" />
             </LinearLayout>
 
         </LinearLayout>
@@ -120,7 +122,8 @@
             android:text="@string/update"
 
 
-            />
+            android:id="@+id/profile_update"
+            android:onClick="updateProfile" />
     </LinearLayout>
 
 </ScrollView>

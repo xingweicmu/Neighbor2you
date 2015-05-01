@@ -1,5 +1,7 @@
 package com.cmu.neighbor2you.service;
 
+import android.content.Context;
+
 import com.cmu.newbackend.userEndpoint.model.User;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public interface IUserService {
      * @param userPO
      *            - User information to be saved.
      */
-    void save(User userPO);
+    void save(Context context, User userPO);
 
     /**
      * This method will load all the users in the
@@ -33,7 +35,7 @@ public interface IUserService {
      *
      * @return - UserPO with the user information if a match is found.
      */
-    User findByName(String userName) throws Exception;
+    User findByName(Context context, String userName) ;
 
     /**
      *
@@ -74,4 +76,6 @@ public interface IUserService {
      * @return the list of userPOs
      */
     List<User> loadCitizenUsers() throws Exception;
+
+    void updateUserRating(Context context, String userName, String rating);
 }

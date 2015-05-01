@@ -2,24 +2,19 @@ package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//import com.cmu.backend.model.User;
-//import com.cmu.backend.userEndpoint.UserEndpoint;
-//import com.cmu.backend.userEndpoint.model.User;
-
 import com.cmu.neighbor2you.R;
-import com.cmu.newbackend.userEndpoint.model.User;
+import com.cmu.neighbor2you.util.PropertyUtil;
+import com.cmu.neighbor2you.util.SharedPreferencesUtil;
 import com.cmu.newbackend.userEndpoint.UserEndpoint;
+import com.cmu.newbackend.userEndpoint.model.User;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.gson.JsonObject;
@@ -31,11 +26,6 @@ import java.io.IOException;
 public class LoginActivity extends ActionBarActivity {
 
     private EditText email, password;
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String name = "emailKey";
-    public static final String pass = "passwordKey";
-    private String message;
-    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +38,10 @@ public class LoginActivity extends ActionBarActivity {
 
     @Override
     protected void onResume() {
-        sharedpreferences = getSharedPreferences(MyPREFERENCES,
-                Context.MODE_PRIVATE);
-        if (sharedpreferences.contains(name)) {
-            if (sharedpreferences.contains(pass)) {
-                startActivity(new Intent(this, MainPageActivity.class));
-            }
+        SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(this);
+        if (sharedPreferencesUtil.getUserEmail() != null && sharedPreferencesUtil.getUserPassword() != null) {
+            startActivity(new Intent(this, MainPageActivity.class));
+            this.finish();
         }
         super.onResume();
     }
@@ -103,7 +91,7 @@ public class LoginActivity extends ActionBarActivity {
                 // end options for devappserver
 
                 UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                            .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
@@ -116,12 +104,12 @@ public class LoginActivity extends ActionBarActivity {
 
                 JsonParser parser = new JsonParser();
                 JsonObject jsonObject = parser.parse(s).getAsJsonObject();
-                message = jsonObject.get("message").getAsString();
+                final String message = jsonObject.get("message").getAsString();
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                     }
                 });
                 return null;
@@ -131,36 +119,14 @@ public class LoginActivity extends ActionBarActivity {
         @Override
         public void onPostExecute(User user) {
             if (user != null) {
-                SharedPreferences.Editor editor = sharedpreferences.edit();
                 String u = email.getText().toString();
                 String p = password.getText().toString();
-                editor.putString(name, u);
-                editor.putString(pass, p);
-                editor.commit();
-                startActivity(new Intent(this.context, MainPageActivity.class));
+                SharedPreferencesUtil sharedUtil = new SharedPreferencesUtil(context);
+                sharedUtil.save(u, p);
+                startActivity(new Intent(context, MainPageActivity.class));
+                LoginActivity.this.finish();
             }
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

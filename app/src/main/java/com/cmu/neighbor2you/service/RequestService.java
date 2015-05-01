@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.cmu.neighbor2you.util.PropertyUtil;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -72,7 +73,7 @@ public class RequestService extends Service implements IRequestService {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 

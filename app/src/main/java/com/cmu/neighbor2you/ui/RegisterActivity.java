@@ -2,22 +2,19 @@ package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//import com.cmu.backend.userEndpoint.UserEndpoint;
-//import com.cmu.backend.userEndpoint.model.User;
-import com.cmu.newbackend.userEndpoint.model.User;
-import com.cmu.newbackend.userEndpoint.UserEndpoint;
 import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.util.PropertyUtil;
+import com.cmu.neighbor2you.util.SharedPreferencesUtil;
+import com.cmu.newbackend.userEndpoint.UserEndpoint;
+import com.cmu.newbackend.userEndpoint.model.User;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.gson.JsonObject;
@@ -25,14 +22,13 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
+
 /**
  * Created by mangobin on 15-3-29.
  */
 public class RegisterActivity extends ActionBarActivity {
 
     private EditText username, password, password2, email, phone, address;
-    private String message;
-    private boolean isRegisteredSuccessed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +52,26 @@ public class RegisterActivity extends ActionBarActivity {
         String addrS = address.getText().toString();
         String phoneS = phone.getText().toString();
 
-        if (isValid(passwordS1, passwordS2, emailS, phoneS)) {
+        if (isValid(usernameS,passwordS1, passwordS2, emailS, phoneS)) {
             User user = new User();
             user.setUserName(usernameS);
             user.setPassword(passwordS1);
             user.setEmail(emailS);
             user.setAddress(addrS);
             user.setPhoneNumber(phoneS);
-            new GcmRegistrationAsyncTask(this,emailS).execute();
+            new GcmRegistrationAsyncTask(this, emailS).execute();
             new RegisterAsyncTask(this).execute(user);
-//            if(isRegisteredSuccessed)
 
         }
 
     }
 
-    private boolean isValid(String pass1, String pass2, String email, String phone) {
+    private boolean isValid(String usernameS, String pass1, String pass2, String email, String phone) {
         boolean ret = true;
-//        if (username.trim().isEmpty()) {
-//            ret = false;
-//            Toast.makeText(this, "User name is empty!", Toast.LENGTH_LONG).show();
-//        } else
+        if (usernameS.trim().isEmpty()) {
+            ret = false;
+            Toast.makeText(this, "User name is empty!", Toast.LENGTH_LONG).show();
+        } else
         if (pass1.trim().isEmpty() || pass2.trim().isEmpty()) {
             ret = false;
             Toast.makeText(this, "Password is empty!", Toast.LENGTH_LONG).show();
@@ -93,12 +88,6 @@ public class RegisterActivity extends ActionBarActivity {
 
         return ret;
 
-
-    }
-
-    public void cancel(View v) {
-        startActivity(new Intent(this, LoginActivity.class));
-        this.finish();
     }
 
 
@@ -112,22 +101,10 @@ public class RegisterActivity extends ActionBarActivity {
 
         @Override
         public User doInBackground(User... params) {
-            if (myApiService == null) { // Only do this once
-//                UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
-//                        new AndroidJsonFactory(), null)
-//                        // options for running against local devappserver
-//                        // - 10.0.2.2 is localhost's IP address in Android emulator
-//                        // - turn off compression when running against local devappserver
-//                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
-//                        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-//                            @Override
-//                            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-//                                abstractGoogleClientRequest.setDisableGZipContent(true);
-//                            }
-//                        });
-                // end options for devappserver
-                UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+            if (myApiService == null) {
+                UserEndpoint.Builder builder = new UserEndpoint
+                        .Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
@@ -135,12 +112,12 @@ public class RegisterActivity extends ActionBarActivity {
                 return myApiService.signUp(params[0]).execute();
             } catch (IOException e) {
                 String s = e.getMessage().trim();
-                Log.v("TAG",s);
+                Log.v("TAG", s);
                 s = s.substring(s.indexOf("{"));
 
                 JsonParser parser = new JsonParser();
                 JsonObject jsonObject = parser.parse(s).getAsJsonObject();
-                message = jsonObject.get("message").getAsString();
+                final String message = jsonObject.get("message").getAsString();
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -155,42 +132,19 @@ public class RegisterActivity extends ActionBarActivity {
         @Override
         public void onPostExecute(User result) {
             if (result != null) {
-                SharedPreferences sharedpreferences = getSharedPreferences
-                        (LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
                 String u = email.getText().toString();
                 String p = password.getText().toString();
-                editor.putString(LoginActivity.name, u);
-                editor.putString(LoginActivity.pass, p);
-                editor.commit();
-                isRegisteredSuccessed = true;
+
+                SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(context);
+                sharedPreferencesUtil.save(u, p);
                 Intent it = new Intent();
                 it.setClass(RegisterActivity.this, MainPageActivity.class);
                 startActivity(it);
+                RegisterActivity.this.finish();
+
             }
 
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

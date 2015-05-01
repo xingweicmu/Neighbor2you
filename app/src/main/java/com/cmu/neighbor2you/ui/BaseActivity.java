@@ -3,15 +3,14 @@ package com.cmu.neighbor2you.ui;
 
 import android.app.Activity;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +23,8 @@ import android.widget.Toast;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.adapter.NavDrawerItem;
 import com.cmu.neighbor2you.adapter.NavDrawerListAdapter;
+import com.cmu.neighbor2you.util.SharedPreferencesUtil;
+import com.cmu.newbackend.userEndpoint.model.User;
 
 import java.util.ArrayList;
 
@@ -143,14 +144,12 @@ public class BaseActivity extends Activity {
                 }
                 return true;
             case R.id.action_logout:
-                SharedPreferences sharedpreferences = getSharedPreferences
-                        (LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.clear();
-                editor.commit();
+                SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(this);
+                sharedPreferencesUtil.clear();
                 Intent it = new Intent();
                 it.setClass(BaseActivity.this, LoginActivity.class);
                 startActivity(it);
+                this.finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -224,6 +223,14 @@ public class BaseActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    /**
+     * stub method for subclass to implement
+     * @param user
+     */
+    public void updateUIBasedOnUser(User user) {
+        Log.d("updateUI","base");
     }
 
 }

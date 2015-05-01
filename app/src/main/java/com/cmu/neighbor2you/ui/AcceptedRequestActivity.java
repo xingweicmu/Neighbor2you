@@ -2,7 +2,6 @@ package com.cmu.neighbor2you.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,20 +9,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
-//import com.cmu.backend.requestEndpoint.RequestEndpoint;
-//import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
-//import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.neighbor2you.R;
+import com.cmu.neighbor2you.adapter.AcceptedRequestListViewAdapter;
+import com.cmu.neighbor2you.util.PropertyUtil;
+import com.cmu.neighbor2you.util.SharedPreferencesUtil;
+import com.cmu.neighbor2you.view.XListView;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.CollectionResponseRequest;
 import com.cmu.newbackend.requestEndpoint.model.Request;
-import com.cmu.neighbor2you.R;
-import com.cmu.neighbor2you.adapter.AcceptedRequestListViewAdapter;
-import com.cmu.neighbor2you.view.XListView;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
 import java.util.List;
+
 
 /**
  * Created by mangobin on 15-4-8.
@@ -75,13 +74,12 @@ public class AcceptedRequestActivity extends BaseActivity implements XListView.I
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
             try {
-                SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                String acceptor = sharedPrefs.getString("emailKey", "NUll");
+                String acceptor = new SharedPreferencesUtil(context).getUserEmail();
                 return myApiService.getRequestBasedOnAcceptor(acceptor).execute();
             } catch (IOException e) {
                 e.printStackTrace();

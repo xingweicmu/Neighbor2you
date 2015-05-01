@@ -1,11 +1,15 @@
 package com.cmu.neighbor2you.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.cmu.neighbor2you.ui.BaseActivity;
+import com.cmu.neighbor2you.util.PropertyUtil;
 import com.cmu.newbackend.userEndpoint.UserEndpoint;
 import com.cmu.newbackend.userEndpoint.model.User;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -17,23 +21,22 @@ import java.util.List;
 /**
  * Created by xing on 4/17/15.
  */
-public class UserService extends Service implements IUserService{
+public class UserService extends Service implements IUserService {
     private User user;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //TODO do something useful
         return Service.START_NOT_STICKY;
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        //TODO for communication return IBinder implementation
         return null;
     }
 
     @Override
-    public void save(User userPO) {
-
+    public void save(Context context, User userPO) {
+        new UpdateUserAsyncTask(context).execute(userPO);
     }
 
     @Override
@@ -42,9 +45,9 @@ public class UserService extends Service implements IUserService{
     }
 
     @Override
-    public User findByName(String userName) throws Exception {
+    public User findByName(Context context, String userName) {
 
-        new GetUserAsyncTask().execute(userName);
+        new GetUserAsyncTask(context).execute(userName);
         return user;
     }
 
@@ -74,18 +77,31 @@ public class UserService extends Service implements IUserService{
     }
 
     @Override
+    public void updateUserRating(Context context, String userName, String rating) {
+        new UpdateUserRatingAsyncTask(context).execute(userName, rating);
+    }
+
+    @Override
     public List<User> loadCitizenUsers() throws Exception {
         return null;
     }
 
     private class GetUserAsyncTask extends AsyncTask<String, Void, User> {
         private UserEndpoint myApiService = null;
+        private Context context;
+        private BaseActivity baseActivity;
+
+        public GetUserAsyncTask(Context context) {
+            this.context = context;
+            baseActivity = (BaseActivity) context;
+        }
 
         @Override
         public User doInBackground(String... params) {
             if (myApiService == null) {
-                UserEndpoint.Builder builder = new UserEndpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                UserEndpoint.Builder builder = new UserEndpoint
+                        .Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
@@ -93,7 +109,7 @@ public class UserService extends Service implements IUserService{
                 return myApiService.getUserByEmail(params[0]).execute();
             } catch (IOException e) {
                 String s = e.getMessage().trim();
-                Log.v("UserService", s);
+                Log.v("getuser", s);
                 return null;
             }
         }
@@ -102,6 +118,78 @@ public class UserService extends Service implements IUserService{
         public void onPostExecute(User usr) {
             if (usr != null) {
                 user = usr;
+                baseActivity.updateUIBasedOnUser(user);
+            }
+
+        }
+    }
+
+    private class UpdateUserRatingAsyncTask extends AsyncTask<String, Void, User> {
+        private UserEndpoint myApiService = null;
+        private Context context;
+
+        public UpdateUserRatingAsyncTask(Context context) {
+            this.context = context;
+        }
+
+
+        @Override
+        public User doInBackground(String... params) {
+            if (myApiService == null) {
+                UserEndpoint.Builder builder = new UserEndpoint
+                        .Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
+                myApiService = builder.build();
+            }
+
+            try {
+                return myApiService.updateRatingScore(params[0], Double.parseDouble(params[1])).execute();
+            } catch (IOException e) {
+                String s = e.getMessage().trim();
+                Log.v("ratingService-", s);
+                return null;
+            }
+        }
+
+        @Override
+        public void onPostExecute(User usr) {
+            if (usr != null) {
+                Toast.makeText(context, "Thank you! rating received!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class UpdateUserAsyncTask extends AsyncTask<User, Void, User> {
+        private UserEndpoint myApiService = null;
+        private Context context;
+
+        public UpdateUserAsyncTask(Context context) {
+            this.context = context;
+        }
+
+
+        @Override
+        public User doInBackground(User... params) {
+            if (myApiService == null) {
+                UserEndpoint.Builder builder = new UserEndpoint
+                        .Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
+                myApiService = builder.build();
+            }
+
+            try {
+                return myApiService.updateUser(params[0]).execute();
+            } catch (IOException e) {
+                String s = e.getMessage().trim();
+                Log.v("ratingService-", s);
+                return null;
+            }
+        }
+
+        @Override
+        public void onPostExecute(User usr) {
+            if (usr != null) {
+                Toast.makeText(context, "Update user success!", Toast.LENGTH_SHORT).show();
             }
         }
     }

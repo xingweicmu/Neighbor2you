@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,18 +16,17 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-//import com.cmu.backend.requestEndpoint.RequestEndpoint;
-//import com.cmu.backend.requestEndpoint.model.Request;
-import com.cmu.neighbor2you.service.IUserService;
-import com.cmu.neighbor2you.service.UserService;
-import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
-import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.model.Product;
+import com.cmu.neighbor2you.service.UserService;
 import com.cmu.neighbor2you.util.GPSTracker;
 import com.cmu.neighbor2you.util.ImageLoader;
+import com.cmu.neighbor2you.util.PropertyUtil;
+import com.cmu.neighbor2you.util.SharedPreferencesUtil;
 import com.cmu.neighbor2you.util.TimestampUtil;
 import com.cmu.neighbor2you.util.WalmartUtil;
+import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
+import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.cmu.newbackend.userEndpoint.model.User;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -38,6 +36,7 @@ import java.util.Date;
 
 import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
 import jim.h.common.android.zxinglib.integrator.IntentResult;
+
 
 /**
  * Created by mangobin on 15-4-5.
@@ -66,6 +65,8 @@ public class PostRequestActivity extends BaseActivity {
         setContentView(R.layout.activity_post_request);
         gps = new GPSTracker(this);
         gps.getLocation();
+        request = new Request();
+
         itemName = (EditText) findViewById(R.id.itemNameEditText);
         price = (EditText) findViewById(R.id.p_priceEdit);
         address = (EditText) findViewById(R.id.p_addressEdit);
@@ -73,24 +74,9 @@ public class PostRequestActivity extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.posted_image);
         time = (EditText) findViewById(R.id.p_dueEdit);
         View btnScan = findViewById(R.id.posted_image);
-        request = new Request();
 
-        SharedPreferences sharedPrefs = getSharedPreferences("MyPrefs",
-                Context.MODE_PRIVATE);
-        try {
-            requesterName = sharedPrefs.getString("emailKey", "NUll");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        requesterName = new SharedPreferencesUtil(this).getUserEmail();
 
-        try {
-            IUserService userService = new UserService();
-            User user = userService.findByName(requesterName);
-            address.setText(user.getAddress());
-            phone.setText(user.getPhoneNumber());
-        } catch (Exception e) {
-            Log.d("getusernameError",e.getMessage());
-        }
 
         // Scan button
         btnScan.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +87,15 @@ public class PostRequestActivity extends BaseActivity {
             }
         });
 
+        //get user info to populate phone and address fields
+        new UserService().findByName(this, requesterName);
 
+    }
+
+    public void updateUIBasedOnUser(User user) {
+        Log.d("updateUI", "posted");
+        address.setText(user.getAddress());
+        phone.setText(user.getPhoneNumber());
     }
 
     public void post(View view) {
@@ -186,8 +180,9 @@ public class PostRequestActivity extends BaseActivity {
                 request.setUrl(product.getThumbnailImage());
                 Log.v("pppp", product.toString());
 
+
             } else {
-                Toast.makeText(getBaseContext(), "This product information is not available!", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "This product information is not available!", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -203,9 +198,9 @@ public class PostRequestActivity extends BaseActivity {
         @Override
         public Request doInBackground(Request... params) {
             if (myApiService == null) {
-                RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
-                        new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                RequestEndpoint.Builder builder = new RequestEndpoint
+                        .Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
@@ -222,6 +217,7 @@ public class PostRequestActivity extends BaseActivity {
             if (request != null) {
                 Toast.makeText(getApplicationContext(), "Post success!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(this.context, MainPageActivity.class));
+                PostRequestActivity.this.finish();
             }
         }
     }

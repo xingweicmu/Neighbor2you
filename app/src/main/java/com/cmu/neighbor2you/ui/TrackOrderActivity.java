@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.adapter.TrackOrderListViewAdapter;
 import com.cmu.neighbor2you.service.IRequestService;
+import com.cmu.neighbor2you.service.IUserService;
 import com.cmu.neighbor2you.service.RequestService;
+import com.cmu.neighbor2you.service.UserService;
+import com.cmu.neighbor2you.util.PropertyUtil;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.Request;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -34,7 +37,6 @@ public class TrackOrderActivity extends BaseActivity {
 
     private TextView buyer;
     private ListView listView;
-    private TrackOrderListViewAdapter adapter;
     private Request req;
     private ProgressDialog pDialog;
 
@@ -52,17 +54,23 @@ public class TrackOrderActivity extends BaseActivity {
 
     public void itemReceived(View view) {
 
+        //update request
+        IRequestService requestService = new RequestService();
+        req.setStatus("ARRIVED");
+        requestService.updateRequest(req, this);
+
         final Dialog dialog = new Dialog(this);
-
         dialog.setContentView(R.layout.activity_rating);
-
         dialog.setTitle("Rating");
+
         final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
 
-                buyer.setText(String.valueOf(ratingBar.getRating()));
+                //update rating
+                IUserService userService = new UserService();
+                userService.updateUserRating(TrackOrderActivity.this, req.getAcceptor(), String.valueOf(ratingBar.getRating()));
                 dialog.dismiss();
 
             }
@@ -70,9 +78,6 @@ public class TrackOrderActivity extends BaseActivity {
 
         dialog.show();
 
-        IRequestService requestService = new RequestService();
-        req.setStatus("ARRIVED");
-        requestService.updateRequest(req,this);
     }
 
     public void dial(View view) {
@@ -103,7 +108,7 @@ public class TrackOrderActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
@@ -122,6 +127,7 @@ public class TrackOrderActivity extends BaseActivity {
                 req = request;
                 List<Request> list = new ArrayList<Request>();
                 list.add(request);
+                TrackOrderListViewAdapter adapter;
                 adapter = new TrackOrderListViewAdapter(TrackOrderActivity.this, list);
                 listView.setAdapter(adapter);
                 buyer.setText(request.getAcceptor());

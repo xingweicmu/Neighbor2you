@@ -14,6 +14,7 @@ import android.widget.Button;
 //import com.cmu.backend.requestEndpoint.RequestEndpoint;
 //import com.cmu.backend.requestEndpoint.model.CollectionResponseRequest;
 //import com.cmu.backend.requestEndpoint.model.Request;
+import com.cmu.neighbor2you.util.PropertyUtil;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.CollectionResponseRequest;
 import com.cmu.newbackend.requestEndpoint.model.Request;
@@ -89,7 +90,7 @@ public class MainPageActivity extends BaseActivity implements XListView.IXListVi
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.cmu.neighbor2you.R;
 import com.cmu.neighbor2you.util.ImageLoader;
+import com.cmu.neighbor2you.util.PropertyUtil;
 import com.cmu.neighbor2you.util.TimestampUtil;
 import com.cmu.newbackend.requestEndpoint.RequestEndpoint;
 import com.cmu.newbackend.requestEndpoint.model.Request;
@@ -85,7 +86,7 @@ public class AcceptedRequestItemDetailActivity extends BaseActivity {
             if (myApiService == null) {
                 RequestEndpoint.Builder builder = new RequestEndpoint.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/");
+                        .setRootUrl(new PropertyUtil(context).getEndPointAddress());
                 myApiService = builder.build();
             }
 
