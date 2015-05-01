@@ -37,7 +37,7 @@ class GcmRegistrationAsyncTask extends AsyncTask<Void, Void, String> {
         if (regService == null) {
             Registration.Builder builder = new Registration.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://n2y-ci-new.appspot.com/_ah/api/"); // For CI
+                    .setRootUrl("https://n2y-ci-demo.appspot.com/_ah/api/"); // For CI
                     // Need setRootUrl and setGoogleClientRequestInitializer only for local testing,
                     // otherwise they can be skipped
 //                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
