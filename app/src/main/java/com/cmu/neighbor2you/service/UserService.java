@@ -1,10 +1,12 @@
 package com.cmu.neighbor2you.service;
 
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.text.Html;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -90,10 +92,21 @@ public class UserService extends Service implements IUserService {
         private UserEndpoint myApiService = null;
         private Context context;
         private BaseActivity baseActivity;
+        private ProgressDialog pDialog;
 
         public GetUserAsyncTask(Context context) {
             this.context = context;
             baseActivity = (BaseActivity) context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading User Detail..."));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
         }
 
         @Override
@@ -116,6 +129,7 @@ public class UserService extends Service implements IUserService {
 
         @Override
         public void onPostExecute(User usr) {
+            pDialog.dismiss();
             if (usr != null) {
                 user = usr;
                 baseActivity.updateUIBasedOnUser(user);
