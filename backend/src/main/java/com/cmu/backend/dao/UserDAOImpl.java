@@ -11,9 +11,7 @@ public class UserDAOImpl implements  IUserDAO {
 
 
     @Override
-    public void save(User userPO) {
-
-    }
+    public void save(User userPO) {}
 
     @Override
     public List<User> loadUsers() throws Exception {

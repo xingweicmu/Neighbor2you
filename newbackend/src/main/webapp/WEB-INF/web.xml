@@ -13,9 +13,10 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.cmu.newbackend.RegistrationEndpoint,
-                com.cmu.newbackend.MessagingEndpoint, com.cmu.newbackend.UserEndpoint,
-                com.cmu.newbackend.RequestEndpoint
+            <param-value>com.cmu.newbackend.service.RegistrationEndpoint,
+                com.cmu.newbackend.service.MessagingEndpoint,
+                com.cmu.newbackend.service.UserEndpoint,
+                com.cmu.newbackend.service.RequestEndpoint
             </param-value>
         </init-param>
     </servlet>
