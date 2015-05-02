@@ -55,7 +55,6 @@
                     android:layout_width="70dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
                     android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +91,6 @@
                     android:layout_width="70dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
                     android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,7 +127,6 @@
                     android:layout_width="70dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
                     android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -166,7 +163,6 @@
                     android:layout_width="70dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
                     android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -203,7 +199,6 @@
                     android:layout_width="70dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/oil"
                     android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="wrap_content"

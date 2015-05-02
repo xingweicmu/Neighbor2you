@@ -19,7 +19,6 @@
             android:id="@+id/posted_list_image"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/oil"
 
             />
     </LinearLayout>
