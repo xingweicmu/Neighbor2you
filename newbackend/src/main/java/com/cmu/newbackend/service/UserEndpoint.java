@@ -12,6 +12,7 @@ import com.google.api.server.spi.response.NotFoundException;
 import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.api.datastore.QueryResultIterator;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
@@ -135,6 +136,11 @@ public class UserEndpoint {
         ofy().delete().entity(record).now();
     }
 
+    @ApiMethod(name = "removeAll")
+    public void removeAll() {
+        List<Key<User>> keys = ofy().load().type(User.class).keys().list();
+        ofy().delete().keys(keys).now();
+    }
     /**
      * Get User by Email.
      * @param email

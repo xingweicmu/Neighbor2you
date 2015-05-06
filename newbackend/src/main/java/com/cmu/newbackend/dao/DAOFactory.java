@@ -29,7 +29,7 @@ public class DAOFactory {
      *
      * @return - Object implementing IUserDAO
      */
-    public IUserDAO getUserDAO() {
+    public IBaseDAO getUserDAO() {
         return new UserDAOImpl();
     }
 
@@ -38,7 +38,7 @@ public class DAOFactory {
      *
      * @return - Object implementing IStatusDAO
      */
-    public IRequestDAO getStatusDAO() {
+    public IBaseDAO getStatusDAO() {
         return new RequestDAOImpl();
     }
 

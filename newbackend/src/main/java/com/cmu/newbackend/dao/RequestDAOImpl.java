@@ -16,87 +16,7 @@ import static com.cmu.newbackend.util.DBUtils.getConnection;
 /**
  * Created by xing on 4/16/15.
  */
-public class RequestDAOImpl implements IRequestDAO {
-
-    /**
-     * Insert a Request to the database.
-     * @param request
-     * @return
-     */
-    @Override
-    public boolean insertRequest(Request request) {
-
-        if (request == null) {
-            return false;
-        }
-        try {
-            Connection conn = getConnection();
-            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
-            stmt.setString(1, request.getItemName());
-            stmt.setString(2, request.getAcceptor());
-            stmt.setString(3, request.getRequester());
-            stmt.setString(4, request.getAddress());
-            int rowCount = stmt.executeUpdate();
-            conn.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    /**
-     * Delete the request from the database;
-     * @param request
-     * @return
-     */
-    @Override
-    public boolean deleteRequest(Request request) {
-
-        if (request == null) {
-            return false;
-        }
-        try {
-            Connection conn = getConnection();
-            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
-            stmt.setString(1, request.getItemName());
-            stmt.setString(2, request.getAcceptor());
-            stmt.setString(3, request.getRequester());
-            stmt.setString(4, request.getAddress());
-            int rowCount = stmt.executeUpdate();
-            conn.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    /**
-     * Update the request.
-     * @param request
-     * @return
-     */
-    @Override
-    public Request updateRequest(Request request) {
-
-
-        if (request == null) {
-            return request;
-        }
-        try {
-            Connection conn = getConnection();
-            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
-            stmt.setString(1, request.getItemName());
-            stmt.setString(2, request.getAcceptor());
-            stmt.setString(3, request.getRequester());
-            stmt.setString(4, request.getAddress());
-            int rowCount = stmt.executeUpdate();
-            conn.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return request;
-
-    }
+public class RequestDAOImpl extends BaseDAOImpl implements IBaseDAO {
 
     /**
      * Process the results from the database.
@@ -104,9 +24,9 @@ public class RequestDAOImpl implements IRequestDAO {
      * @return
      * @throws Exception
      */
-    private List<Request> processResults(PreparedStatement stmt)
+    private List<Object> processResults(PreparedStatement stmt)
             throws Exception {
-        List<Request> users = new ArrayList<Request>();
+        List<Object> users = new ArrayList<Object>();
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Request po = new Request();
@@ -122,12 +42,56 @@ public class RequestDAOImpl implements IRequestDAO {
     }
 
     /**
-     * Get all requests.
+     * Insert request to database
+     * @param requestPo
      * @return
      */
     @Override
-    public List<Request> getRequest() {
-        List<Request> requests = new ArrayList<Request>();
+    public boolean insert(Object requestPo) {
+        Request request = (Request)requestPo;
+        if (request == null) {
+            return false;
+        }
+        try {
+            Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
+            stmt.setString(1, request.getItemName());
+            stmt.setString(2, request.getAcceptor());
+            stmt.setString(3, request.getRequester());
+            stmt.setString(4, request.getAddress());
+            int rowCount = stmt.executeUpdate();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public Object update(Object requestPo) {
+
+        Request request = (Request)requestPo;
+        if (request == null) {
+            return false;
+        }
+        try {
+            Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
+            stmt.setString(1, request.getItemName());
+            stmt.setString(2, request.getAcceptor());
+            stmt.setString(3, request.getRequester());
+            stmt.setString(4, request.getAddress());
+            int rowCount = stmt.executeUpdate();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public List<Object> getAll() throws Exception {
+        List<Object> requests = new ArrayList<Object>();
         try {
             String query = SQL.FIND_ALL_USERS;
             Connection conn = getConnection();
@@ -147,18 +111,16 @@ public class RequestDAOImpl implements IRequestDAO {
      * @throws Exception
      */
     @Override
-    public Request getRequestById(Long id) throws Exception{
+    public Object getRequestById(Long id) throws Exception{
         if (id == null) {;
             return null;
         }
 
-        Request po = null;
+        Object po = null;
         Connection conn = getConnection();
-
         PreparedStatement stmt = conn.prepareStatement(SQL.FIND_USER_BY_NAME);
         stmt.setLong(1, id);
-
-        List<Request> users = processResults(stmt);
+        List<Object> users = processResults(stmt);
 
         if (users.size() == 0) {
             System.out.print("No request exists with id = " + id);

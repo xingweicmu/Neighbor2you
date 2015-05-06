@@ -1,5 +1,6 @@
 package com.cmu.newbackend.dao;
 
+import com.cmu.newbackend.model.Request;
 import com.cmu.newbackend.model.User;
 import com.cmu.newbackend.util.SQL;
 
@@ -14,18 +15,19 @@ import static com.cmu.newbackend.util.DBUtils.getConnection;
 /**
  * Created by xing on 4/16/15.
  */
-public class UserDAOImpl implements  IUserDAO {
+public class UserDAOImpl extends BaseDAOImpl implements IBaseDAO {
 
 
     /**
      * Save the User to the database.
-     * @param userPO
+     * @param user
      */
     @Override
-    public void save(User userPO) {
+    public boolean insert(Object user) {
 
+        User userPO = (User)user;
         if (userPO == null) {
-            return;
+            return false;
         }
          try {
             Connection conn = getConnection();
@@ -39,6 +41,7 @@ public class UserDAOImpl implements  IUserDAO {
         }catch(Exception e){
             e.printStackTrace();
         }
+        return true;
     }
 
     /**
@@ -47,9 +50,9 @@ public class UserDAOImpl implements  IUserDAO {
      * @throws Exception
      */
     @Override
-    public List<User> loadUsers() throws Exception {
+    public List<Object> getAll() throws Exception {
         String query = SQL.FIND_ALL_USERS;
-        List<User> users = new ArrayList<User>();
+        List<Object> users = new ArrayList<Object>();
         Connection conn = getConnection();
         PreparedStatement stmt = conn.prepareStatement(query);
         users = processResults(stmt);
@@ -63,9 +66,9 @@ public class UserDAOImpl implements  IUserDAO {
      * @return
      * @throws Exception
      */
-    private List<User> processResults(PreparedStatement stmt)
+    private List<Object> processResults(PreparedStatement stmt)
             throws Exception {
-        List<User> users = new ArrayList<User>();
+        List<Object> users = new ArrayList<Object>();
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             User po = new User();
@@ -83,34 +86,57 @@ public class UserDAOImpl implements  IUserDAO {
 
     /**
      * Find the User using name.
-     * @param userName
+     * @param id
      *            - User name to search for.
      *
      * @return
      * @throws Exception
      */
     @Override
-    public User findByName(String userName) throws Exception {
+    public Object getRequestById(Long id) throws Exception {
 
-        if (userName == null) {;
+        if (id == null) {;
             return null;
         }
 
-        User po = null;
+        Object po = null;
         Connection conn = getConnection();
 
         PreparedStatement stmt = conn.prepareStatement(SQL.FIND_USER_BY_NAME);
-        stmt.setString(1, userName.toUpperCase());
+        stmt.setLong(1, id);
 
-        List<User> users = processResults(stmt);
+        List<Object> users = processResults(stmt);
 
         if (users.size() == 0) {
-            System.out.print("No user account exists with userName = " + userName);
+            System.out.print("No user account exists with user id = " + id);
         } else {
             po = users.get(0);
         }
 
         return po;
+    }
+
+
+    @Override
+    public Object update(Object object) {
+
+        User userPO = (User)object;
+        if (userPO == null) {
+            return false;
+        }
+        try {
+            Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(SQL.INSERT_USER);
+            stmt.setString(1, userPO.getUserName());
+            stmt.setString(2, userPO.getPassword());
+            stmt.setString(3, userPO.getAddress());
+            stmt.setString(4, userPO.getPassword());
+            int rowCount = stmt.executeUpdate();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return true;
     }
 
 
